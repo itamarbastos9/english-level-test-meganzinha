@@ -2,581 +2,279 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English Level Test with Meganzinha</title>
 
-  <style>
-    *{
-      box-sizing:border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:linear-gradient(180deg, #f4fff0 0%, #eef6ff 100%);
-      color:#1f2937;
-      padding:20px;
-    }
+<title>English Level Test with Meganzinha</title>
 
-    .page{
-      max-width:720px;
-      margin:0 auto;
-    }
+<style>
 
-    .logo{
-      text-align:center;
-      font-size:18px;
-      font-weight:bold;
-      color:#58cc02;
-      margin-bottom:18px;
-    }
+body{
+font-family:Arial;
+background:#f6f7fb;
+padding:20px;
+text-align:center;
+}
 
-    .card{
-      background:white;
-      border-radius:24px;
-      padding:24px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    }
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
 
-    .hero-title{
-      font-size:34px;
-      line-height:1.15;
-      margin:0 0 10px 0;
-      text-align:center;
-      color:#58cc02;
-    }
+button{
+padding:12px 20px;
+border:none;
+border-radius:8px;
+background:#58cc02;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
 
-    .hero-subtitle{
-      text-align:center;
-      color:#6b7280;
-      font-size:16px;
-      margin-bottom:24px;
-    }
+button:hover{
+background:#46a302;
+}
 
-    .badge{
-      display:inline-block;
-      background:#ecfccb;
-      color:#3f6212;
-      padding:8px 14px;
-      border-radius:999px;
-      font-size:13px;
-      font-weight:bold;
-      margin-bottom:18px;
-    }
+input{
+width:90%;
+padding:12px;
+margin:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
 
-    .center{
-      text-align:center;
-    }
+.option{
+display:block;
+background:#eee;
+padding:12px;
+margin:8px;
+border-radius:8px;
+cursor:pointer;
+}
 
-    input{
-      width:100%;
-      padding:14px 16px;
-      margin:8px 0;
-      font-size:16px;
-      border:1px solid #d1d5db;
-      border-radius:14px;
-      outline:none;
-    }
+.option:hover{
+background:#ddd;
+}
 
-    input:focus{
-      border-color:#58cc02;
-      box-shadow:0 0 0 3px rgba(88,204,2,0.15);
-    }
+#progress-bar{
+height:10px;
+background:#58cc02;
+width:0%;
+margin-top:20px;
+}
 
-    .main-btn{
-      width:100%;
-      border:none;
-      background:#58cc02;
-      color:white;
-      font-size:18px;
-      font-weight:bold;
-      padding:15px;
-      border-radius:14px;
-      cursor:pointer;
-      margin-top:12px;
-      transition:0.2s;
-    }
+</style>
 
-    .main-btn:hover{
-      background:#46a302;
-    }
-
-    .secondary-btn{
-      width:100%;
-      border:none;
-      background:#2563eb;
-      color:white;
-      font-size:18px;
-      font-weight:bold;
-      padding:15px;
-      border-radius:14px;
-      cursor:pointer;
-      margin-top:18px;
-      transition:0.2s;
-      display:none;
-    }
-
-    .secondary-btn:hover{
-      background:#1d4ed8;
-    }
-
-    #progress-container{
-      width:100%;
-      height:14px;
-      background:#e5e7eb;
-      border-radius:999px;
-      overflow:hidden;
-      margin-bottom:20px;
-      display:none;
-    }
-
-    #progress-bar{
-      width:0%;
-      height:100%;
-      background:linear-gradient(90deg, #58cc02 0%, #84cc16 100%);
-      transition:0.3s;
-    }
-
-    .top-info{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:18px;
-    }
-
-    .info-box{
-      flex:1;
-      min-width:140px;
-      background:#f9fafb;
-      border-radius:16px;
-      padding:14px;
-      text-align:center;
-    }
-
-    .info-label{
-      font-size:13px;
-      color:#6b7280;
-      margin-bottom:6px;
-    }
-
-    .info-value{
-      font-size:18px;
-      font-weight:bold;
-    }
-
-    #question{
-      font-size:26px;
-      font-weight:bold;
-      line-height:1.35;
-      margin-bottom:10px;
-      text-align:center;
-    }
-
-    #question-level{
-      font-size:14px;
-      color:#6b7280;
-      text-align:center;
-      margin-bottom:20px;
-    }
-
-    #options{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-
-    .option-btn{
-      width:100%;
-      border:none;
-      border-radius:16px;
-      padding:16px;
-      font-size:17px;
-      font-weight:bold;
-      cursor:pointer;
-      background:#f3f4f6;
-      color:#111827;
-      transition:0.2s;
-    }
-
-    .option-btn:hover{
-      background:#e5e7eb;
-    }
-
-    .option-btn.correct{
-      background:#58cc02;
-      color:white;
-    }
-
-    .option-btn.wrong{
-      background:#ef4444;
-      color:white;
-    }
-
-    .option-btn.disabled{
-      opacity:0.8;
-      cursor:not-allowed;
-    }
-
-    #result{
-      margin-top:18px;
-      min-height:28px;
-      text-align:center;
-      font-size:18px;
-      font-weight:bold;
-    }
-
-    #final-level{
-      margin-top:18px;
-      text-align:center;
-      font-size:28px;
-      font-weight:bold;
-      color:#58cc02;
-    }
-
-    #certificate{
-      margin-top:24px;
-      background:linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-      border:2px solid #d9f99d;
-      border-radius:20px;
-      padding:22px;
-      text-align:center;
-      display:none;
-    }
-
-    #certificate h2{
-      color:#58cc02;
-      margin-top:0;
-      margin-bottom:10px;
-      font-size:28px;
-    }
-
-    #certificate p{
-      margin:8px 0;
-      color:#374151;
-    }
-
-    .certificate-highlight{
-      font-size:20px;
-      font-weight:bold;
-      color:#111827;
-    }
-
-    #start-screen{
-      display:block;
-    }
-
-    #quiz-screen{
-      display:none;
-    }
-
-    .small-text{
-      font-size:14px;
-      color:#6b7280;
-      text-align:center;
-      margin-top:14px;
-    }
-
-    @media (max-width: 640px){
-      body{
-        padding:12px;
-      }
-
-      .card{
-        padding:18px;
-        border-radius:18px;
-      }
-
-      .hero-title{
-        font-size:28px;
-      }
-
-      .hero-subtitle{
-        font-size:15px;
-      }
-
-      #question{
-        font-size:22px;
-      }
-
-      .option-btn{
-        font-size:16px;
-        padding:14px;
-      }
-
-      .main-btn,
-      .secondary-btn{
-        font-size:17px;
-        padding:14px;
-      }
-
-      .info-value{
-        font-size:17px;
-      }
-
-      #final-level{
-        font-size:24px;
-      }
-
-      #certificate h2{
-        font-size:24px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <div class="page">
-    <div class="logo">💚 English Level Test with Meganzinha</div>
+<div class="container">
 
-    <div class="card">
+<h1>English Level Test with Meganzinha</h1>
 
-      <div id="start-screen" class="center">
-        <div class="badge">Placement Test</div>
-        <h1 class="hero-title">English Level Test with Meganzinha</h1>
-        <p class="hero-subtitle">
-          Discover your English level from beginner to advanced.
-        </p>
+<div id="start-screen">
 
-        <input id="student-name" type="text" placeholder="Your name">
-        <input id="student-email" type="email" placeholder="Your email">
+<input id="student-name" placeholder="Your name">
 
-        <button class="main-btn" onclick="startQuiz()">Start Test</button>
+<input id="student-email" placeholder="Your email">
 
-        <p class="small-text">
-          This test works on computer and mobile.
-        </p>
-      </div>
+<br>
 
-      <div id="quiz-screen">
-        <div id="progress-container">
-          <div id="progress-bar"></div>
-        </div>
+<button onclick="startQuiz()">Start Test</button>
 
-        <div class="top-info">
-          <div class="info-box">
-            <div class="info-label">Score</div>
-            <div id="score" class="info-value">0</div>
-          </div>
+</div>
 
-          <div class="info-box">
-            <div class="info-label">Question</div>
-            <div id="question-number" class="info-value">1 / 20</div>
-          </div>
-        </div>
+<div id="quiz-screen" style="display:none">
 
-        <div id="question"></div>
-        <div id="question-level"></div>
-        <div id="options"></div>
-        <div id="result"></div>
-        <div id="final-level"></div>
+<h2 id="question"></h2>
 
-        <div id="certificate">
-          <h2>Certificate</h2>
-          <p>You completed the</p>
-          <p class="certificate-highlight">English Level Test with Meganzinha</p>
-          <p id="certificate-name"></p>
-          <p id="certificate-score"></p>
-          <p id="certificate-level"></p>
-        </div>
-      </div>
+<div id="options"></div>
 
-      <button id="restart-btn" class="secondary-btn" onclick="restartQuiz()">Restart Test</button>
+<div id="result"></div>
 
-    </div>
-  </div>
+<div id="progress-bar"></div>
 
-  <script>
-    let questions = []
-    let current = 0
-    let score = 0
-    let answered = false
+</div>
 
-    let studentName = ""
-    let studentEmail = ""
+<div id="final-screen" style="display:none">
 
-    async function loadQuestions(){
-      const res = await fetch("/questions")
-      questions = await res.json()
-    }
+<h2 id="final-level"></h2>
 
-    async function startQuiz(){
-      studentName = document.getElementById("student-name").value.trim()
-      studentEmail = document.getElementById("student-email").value.trim()
+<button onclick="location.reload()">Restart</button>
 
-      if(!studentName || !studentEmail){
-        alert("Please enter your name and email")
-        return
-      }
+</div>
 
-      await loadQuestions()
+</div>
 
-      current = 0
-      score = 0
-      answered = false
+<script>
 
-      document.getElementById("start-screen").style.display = "none"
-      document.getElementById("quiz-screen").style.display = "block"
-      document.getElementById("progress-container").style.display = "block"
-      document.getElementById("restart-btn").style.display = "none"
-      document.getElementById("certificate").style.display = "none"
+let questions=[]
+let current=0
+let score=0
 
-      document.getElementById("score").innerText = "0"
-      document.getElementById("result").innerText = ""
-      document.getElementById("final-level").innerText = ""
+let studentName=""
+let studentEmail=""
 
-      updateProgress()
-      showQuestion()
-    }
+async function startQuiz(){
 
-    function showQuestion(){
-      answered = false
+studentName=document.getElementById("student-name").value
+studentEmail=document.getElementById("student-email").value
 
-      const q = questions[current]
+if(!studentName || !studentEmail){
+alert("Enter name and email")
+return
+}
 
-      document.getElementById("question").innerText = q.question
-      document.getElementById("question-level").innerText = "Difficulty: " + q.level
-      document.getElementById("question-number").innerText = (current + 1) + " / " + questions.length
+await loadQuestions()
 
-      const optionsDiv = document.getElementById("options")
-      optionsDiv.innerHTML = ""
+document.getElementById("start-screen").style.display="none"
+document.getElementById("quiz-screen").style.display="block"
 
-      q.options.forEach(option => {
-        const btn = document.createElement("button")
-        btn.className = "option-btn"
-        btn.innerText = option
-        btn.onclick = () => checkAnswer(option, btn)
-        optionsDiv.appendChild(btn)
-      })
-    }
+showQuestion()
 
-    function updateProgress(){
-      const progress = (current / questions.length) * 100
-      document.getElementById("progress-bar").style.width = progress + "%"
-    }
+}
 
-    function disableAllButtons(){
-      const buttons = document.querySelectorAll("#options button")
+async function loadQuestions(){
 
-      buttons.forEach(btn => {
-        btn.disabled = true
-        btn.classList.add("disabled")
-      })
-    }
+const res=await fetch("/questions")
 
-    function highlightCorrectAnswer(correct){
-      const buttons = document.querySelectorAll("#options button")
+questions=await res.json()
 
-      buttons.forEach(btn => {
-        if(btn.innerText === correct){
-          btn.classList.add("correct")
-        }
-      })
-    }
+}
 
-    function calculateLevel(score){
-      if(score <= 4){
-        return "A1 Beginner"
-      }else if(score <= 8){
-        return "A2 Elementary"
-      }else if(score <= 12){
-        return "B1 Intermediate"
-      }else if(score <= 16){
-        return "B2 Upper Intermediate"
-      }else{
-        return "C1 Advanced"
-      }
-    }
+function showQuestion(){
 
-    async function checkAnswer(answer, clickedButton){
-      if(answered) return
+let q=questions[current]
 
-      answered = true
+document.getElementById("question").innerText=q.question
 
-      const q = questions[current]
+let optionsDiv=document.getElementById("options")
 
-      const res = await fetch("/questions/answer", {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          id:q.id,
-          answer:answer
-        })
-      })
+optionsDiv.innerHTML=""
 
-      const data = await res.json()
+q.options.forEach(option=>{
 
-      disableAllButtons()
+let btn=document.createElement("div")
 
-      if(data.correct){
-        score++
-        clickedButton.classList.add("correct")
-        document.getElementById("result").innerText = "✅ Correct!"
-      }else{
-        clickedButton.classList.add("wrong")
-        highlightCorrectAnswer(data.correctAnswer)
-        document.getElementById("result").innerText = "❌ Correct answer: " + data.correctAnswer
-      }
+btn.className="option"
 
-      document.getElementById("score").innerText = score
+btn.innerText=option
 
-      current++
-      updateProgress()
+btn.onclick=()=>checkAnswer(option)
 
-      if(current < questions.length){
-        setTimeout(() => {
-          document.getElementById("result").innerText = ""
-          showQuestion()
-        }, 1200)
-      }else{
-        finishTest()
-      }
-    }
+optionsDiv.appendChild(btn)
 
-    async function finishTest(){
-      const level = calculateLevel(score)
+})
 
-      document.getElementById("question").innerText = "🎉 Test Finished!"
-      document.getElementById("question-level").innerText = ""
-      document.getElementById("question-number").innerText = questions.length + " / " + questions.length
-      document.getElementById("options").innerHTML = ""
-      document.getElementById("result").innerText = "Final score: " + score + " / " + questions.length
-      document.getElementById("final-level").innerText = "Estimated level: " + level
+}
 
-      document.getElementById("certificate").style.display = "block"
-      document.getElementById("certificate-name").innerText = "Student: " + studentName
-      document.getElementById("certificate-score").innerText = "Score: " + score + " / " + questions.length
-      document.getElementById("certificate-level").innerText = "Level: " + level
+async function checkAnswer(answer){
 
-      document.getElementById("restart-btn").style.display = "block"
-      document.getElementById("progress-bar").style.width = "100%"
+let q=questions[current]
 
-      await fetch("https://script.google.com/macros/s/AKfycbz-wqwXuZ61kH9EX_OPZ5RLCXdiBciccB_OqPMhIGW0amlh1LDf1d-70jhK58njN4dG/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify({
-          name: studentName,
-          email: studentEmail,
-          score: score,
-          level: level
-        })
-      })
-    }
+const res=await fetch("/questions/answer",{
 
-    function restartQuiz(){
-      document.getElementById("student-name").value = ""
-      document.getElementById("student-email").value = ""
-      document.getElementById("start-screen").style.display = "block"
-      document.getElementById("quiz-screen").style.display = "none"
-      document.getElementById("restart-btn").style.display = "none"
-    }
-  </script>
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+id:q.id,
+
+answer:answer
+
+})
+
+})
+
+const data=await res.json()
+
+if(data.correct){
+
+score++
+
+document.getElementById("result").innerText="Correct!"
+
+}else{
+
+document.getElementById("result").innerText="Correct answer: "+data.correctAnswer
+
+}
+
+current++
+
+document.getElementById("progress-bar").style.width=(current/questions.length*100)+"%"
+
+if(current<questions.length){
+
+setTimeout(()=>{
+
+document.getElementById("result").innerText=""
+
+showQuestion()
+
+},800)
+
+}else{
+
+finishTest()
+
+}
+
+}
+
+function calculateLevel(score){
+
+if(score<=4)return"A1 Beginner"
+if(score<=8)return"A2 Elementary"
+if(score<=12)return"B1 Intermediate"
+if(score<=16)return"B2 Upper Intermediate"
+
+return"C1 Advanced"
+
+}
+
+function finishTest(){
+
+let level=calculateLevel(score)
+
+document.getElementById("quiz-screen").style.display="none"
+
+document.getElementById("final-screen").style.display="block"
+
+document.getElementById("final-level").innerText="Your level: "+level
+
+const params=new URLSearchParams({
+
+name:studentName,
+email:studentEmail,
+score:score,
+level:level
+
+})
+
+fetch("https://script.google.com/macros/s/AKfycbz-wqwXuZ61kH9EX_OPZ5RLCXdiBciccB_OqPMhIGW0amlh1LDf1d-70jhK58njN4dG/exec?"+params.toString(),{
+
+method:"GET",
+mode:"no-cors"
+
+})
+
+}
+
+</script>
 
 </body>
 
