@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Resultados - Meganzinha</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f6f8;
+      margin:0;
+      padding:40px;
+      text-align:center;
+    }
+
+    h1{
+      color:#58cc02;
+      margin-bottom:10px;
+    }
+
+    p{
+      color:#555;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:25px;
+    }
+
+    th, td{
+      padding:14px;
+      border-bottom:1px solid #e5e5e5;
+      text-align:left;
+    }
+
+    th{
+      background:#58cc02;
+      color:white;
+    }
+
+    tr:hover{
+      background:#f9f9f9;
+    }
+
+    .level{
+      font-weight:bold;
+      color:#58cc02;
+    }
+
+    .empty{
+      margin-top:20px;
+      font-size:18px;
+      color:#777;
+    }
+
+    .top-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      background:#58cc02;
+      color:white;
+      border:none;
+      border-radius:10px;
+      padding:12px 18px;
+      font-size:16px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .btn:hover{
+      background:#46a302;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="top-bar">
+      <div>
+        <h1>💚 Resultados da Meganzinha</h1>
+        <p>English Level Test - Student Progress</p>
+      </div>
+
+      <a class="btn" href="/">Voltar para o teste</a>
+    </div>
+
+    <div id="empty-message" class="empty" style="display:none;">
+      Nenhum resultado salvo ainda.
+    </div>
+
+    <table id="results-table" style="display:none;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Score</th>
+          <th>Level</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="results-body"></tbody>
+    </table>
+
+  </div>
+
+  <script>
+    async function loadResults(){
+      const res = await fetch("/questions/results")
+      const results = await res.json()
+
+      const table = document.getElementById("results-table")
+      const body = document.getElementById("results-body")
+      const emptyMessage = document.getElementById("empty-message")
+
+      body.innerHTML = ""
+
+      if(results.length === 0){
+        emptyMessage.style.display = "block"
+        table.style.display = "none"
+        return
+      }
+
+      emptyMessage.style.display = "none"
+      table.style.display = "table"
+
+      results.forEach(result => {
+        const row = document.createElement("tr")
+
+        const formattedDate = new Date(result.date).toLocaleString()
+
+        row.innerHTML = `
+          <td>${result.name}</td>
+          <td>${result.email}</td>
+          <td>${result.score}</td>
+          <td class="level">${result.level}</td>
+          <td>${formattedDate}</td>
+        `
+
+        body.appendChild(row)
+      })
+    }
+
+    loadResults()
+  </script>
+
+</body>
+
+</html>
