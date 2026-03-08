@@ -1,135 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>English Level Test da Meganzinha</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Level Test with Meganzinha</title>
 
   <style>
-    body{
-      font-family: Arial, sans-serif;
-      text-align:center;
-      background:#f4f6f8;
-      margin:0;
-      padding:40px;
+    *{
+      box-sizing:border-box;
     }
 
-    h1{
-      color:#58cc02;
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:linear-gradient(180deg, #f4fff0 0%, #eef6ff 100%);
+      color:#1f2937;
+      padding:20px;
+    }
+
+    .page{
+      max-width:720px;
+      margin:0 auto;
     }
 
     .logo{
-      font-size:28px;
-      margin-bottom:10px;
+      text-align:center;
+      font-size:18px;
+      font-weight:bold;
+      color:#58cc02;
+      margin-bottom:18px;
     }
 
     .card{
       background:white;
-      max-width:650px;
-      margin:auto;
-      padding:40px;
-      border-radius:20px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.1);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .hero-title{
+      font-size:34px;
+      line-height:1.15;
+      margin:0 0 10px 0;
+      text-align:center;
+      color:#58cc02;
+    }
+
+    .hero-subtitle{
+      text-align:center;
+      color:#6b7280;
+      font-size:16px;
+      margin-bottom:24px;
+    }
+
+    .badge{
+      display:inline-block;
+      background:#ecfccb;
+      color:#3f6212;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:bold;
+      margin-bottom:18px;
+    }
+
+    .center{
+      text-align:center;
+    }
+
+    input{
+      width:100%;
+      padding:14px 16px;
+      margin:8px 0;
+      font-size:16px;
+      border:1px solid #d1d5db;
+      border-radius:14px;
+      outline:none;
+    }
+
+    input:focus{
+      border-color:#58cc02;
+      box-shadow:0 0 0 3px rgba(88,204,2,0.15);
+    }
+
+    .main-btn{
+      width:100%;
+      border:none;
+      background:#58cc02;
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      padding:15px;
+      border-radius:14px;
+      cursor:pointer;
+      margin-top:12px;
+      transition:0.2s;
+    }
+
+    .main-btn:hover{
+      background:#46a302;
+    }
+
+    .secondary-btn{
+      width:100%;
+      border:none;
+      background:#2563eb;
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      padding:15px;
+      border-radius:14px;
+      cursor:pointer;
+      margin-top:18px;
+      transition:0.2s;
+      display:none;
+    }
+
+    .secondary-btn:hover{
+      background:#1d4ed8;
     }
 
     #progress-container{
       width:100%;
-      background:#eee;
-      border-radius:20px;
-      height:20px;
+      height:14px;
+      background:#e5e7eb;
+      border-radius:999px;
       overflow:hidden;
-      margin-bottom:30px;
+      margin-bottom:20px;
       display:none;
     }
 
     #progress-bar{
-      height:20px;
       width:0%;
-      background:#58cc02;
+      height:100%;
+      background:linear-gradient(90deg, #58cc02 0%, #84cc16 100%);
       transition:0.3s;
     }
 
+    .top-info{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .info-box{
+      flex:1;
+      min-width:140px;
+      background:#f9fafb;
+      border-radius:16px;
+      padding:14px;
+      text-align:center;
+    }
+
+    .info-label{
+      font-size:13px;
+      color:#6b7280;
+      margin-bottom:6px;
+    }
+
+    .info-value{
+      font-size:18px;
+      font-weight:bold;
+    }
+
     #question{
-      font-size:24px;
+      font-size:26px;
+      font-weight:bold;
+      line-height:1.35;
       margin-bottom:10px;
+      text-align:center;
     }
 
     #question-level{
       font-size:14px;
-      color:#777;
+      color:#6b7280;
+      text-align:center;
       margin-bottom:20px;
     }
 
-    button{
-      display:block;
-      margin:10px auto;
-      padding:14px;
-      font-size:18px;
-      border:none;
-      border-radius:10px;
-      background:#58cc02;
-      color:white;
-      cursor:pointer;
+    #options{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .option-btn{
       width:100%;
-      max-width:320px;
+      border:none;
+      border-radius:16px;
+      padding:16px;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer;
+      background:#f3f4f6;
+      color:#111827;
       transition:0.2s;
     }
 
-    button:hover{
-      background:#46a302;
+    .option-btn:hover{
+      background:#e5e7eb;
     }
 
-    button.correct{
+    .option-btn.correct{
       background:#58cc02;
+      color:white;
     }
 
-    button.wrong{
-      background:#e63946;
+    .option-btn.wrong{
+      background:#ef4444;
+      color:white;
     }
 
-    button.disabled{
-      opacity:0.7;
+    .option-btn.disabled{
+      opacity:0.8;
       cursor:not-allowed;
     }
 
-    input{
-      padding:12px;
-      margin:10px;
-      width:260px;
-      font-size:16px;
-      border:1px solid #ccc;
-      border-radius:10px;
-    }
-
-    #score{
-      margin-bottom:20px;
-      font-size:18px;
-      display:none;
-    }
-
     #result{
-      font-size:20px;
-      margin-top:20px;
-      min-height:30px;
+      margin-top:18px;
+      min-height:28px;
+      text-align:center;
+      font-size:18px;
+      font-weight:bold;
     }
 
     #final-level{
-      font-size:26px;
-      color:#58cc02;
+      margin-top:18px;
+      text-align:center;
+      font-size:28px;
       font-weight:bold;
-      margin-top:15px;
+      color:#58cc02;
     }
 
     #certificate{
-      background:#f7f7f7;
-      border-radius:12px;
-      padding:25px;
-      margin-top:20px;
+      margin-top:24px;
+      background:linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border:2px solid #d9f99d;
+      border-radius:20px;
+      padding:22px;
+      text-align:center;
       display:none;
     }
 
     #certificate h2{
       color:#58cc02;
+      margin-top:0;
       margin-bottom:10px;
+      font-size:28px;
+    }
+
+    #certificate p{
+      margin:8px 0;
+      color:#374151;
+    }
+
+    .certificate-highlight{
+      font-size:20px;
+      font-weight:bold;
+      color:#111827;
     }
 
     #start-screen{
@@ -140,72 +271,121 @@
       display:none;
     }
 
-    #restart-btn{
-      display:none;
-      margin-top:25px;
+    .small-text{
+      font-size:14px;
+      color:#6b7280;
+      text-align:center;
+      margin-top:14px;
+    }
+
+    @media (max-width: 640px){
+      body{
+        padding:12px;
+      }
+
+      .card{
+        padding:18px;
+        border-radius:18px;
+      }
+
+      .hero-title{
+        font-size:28px;
+      }
+
+      .hero-subtitle{
+        font-size:15px;
+      }
+
+      #question{
+        font-size:22px;
+      }
+
+      .option-btn{
+        font-size:16px;
+        padding:14px;
+      }
+
+      .main-btn,
+      .secondary-btn{
+        font-size:17px;
+        padding:14px;
+      }
+
+      .info-value{
+        font-size:17px;
+      }
+
+      #final-level{
+        font-size:24px;
+      }
+
+      #certificate h2{
+        font-size:24px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="logo">
-    💚 English Level Test da Meganzinha
-  </div>
+  <div class="page">
+    <div class="logo">💚 English Level Test with Meganzinha</div>
 
-  <div class="card">
+    <div class="card">
 
-    <div id="start-screen">
-      <h2>Welcome!</h2>
-      <p>Please enter your information to start the test.</p>
+      <div id="start-screen" class="center">
+        <div class="badge">Placement Test</div>
+        <h1 class="hero-title">English Level Test with Meganzinha</h1>
+        <p class="hero-subtitle">
+          Discover your English level from beginner to advanced.
+        </p>
 
-      <input id="student-name" placeholder="Your Name">
+        <input id="student-name" type="text" placeholder="Your name">
+        <input id="student-email" type="email" placeholder="Your email">
 
-      <br>
+        <button class="main-btn" onclick="startQuiz()">Start Test</button>
 
-      <input id="student-email" placeholder="Your Email">
-
-      <br>
-
-      <button onclick="startQuiz()">Start Test</button>
-    </div>
-
-    <div id="quiz-screen">
-
-      <div id="progress-container">
-        <div id="progress-bar"></div>
+        <p class="small-text">
+          This test works on computer and mobile.
+        </p>
       </div>
 
-      <p id="score">Score: 0</p>
+      <div id="quiz-screen">
+        <div id="progress-container">
+          <div id="progress-bar"></div>
+        </div>
 
-      <div id="question"></div>
+        <div class="top-info">
+          <div class="info-box">
+            <div class="info-label">Score</div>
+            <div id="score" class="info-value">0</div>
+          </div>
 
-      <div id="question-level"></div>
+          <div class="info-box">
+            <div class="info-label">Question</div>
+            <div id="question-number" class="info-value">1 / 20</div>
+          </div>
+        </div>
 
-      <div id="options"></div>
+        <div id="question"></div>
+        <div id="question-level"></div>
+        <div id="options"></div>
+        <div id="result"></div>
+        <div id="final-level"></div>
 
-      <p id="result"></p>
-
-      <p id="final-level"></p>
-
-      <div id="certificate">
-        <h2>Certificate</h2>
-
-        <p id="certificate-name"></p>
-
-        <p>You completed the</p>
-
-        <strong>English Level Test da Meganzinha</strong>
-
-        <p id="certificate-score"></p>
-
-        <p id="certificate-level"></p>
+        <div id="certificate">
+          <h2>Certificate</h2>
+          <p>You completed the</p>
+          <p class="certificate-highlight">English Level Test with Meganzinha</p>
+          <p id="certificate-name"></p>
+          <p id="certificate-score"></p>
+          <p id="certificate-level"></p>
+        </div>
       </div>
 
+      <button id="restart-btn" class="secondary-btn" onclick="restartQuiz()">Restart Test</button>
+
     </div>
-
-    <button id="restart-btn" onclick="restartQuiz()">Restart Test</button>
-
   </div>
 
   <script>
@@ -223,11 +403,11 @@
     }
 
     async function startQuiz(){
-      studentName = document.getElementById("student-name").value
-      studentEmail = document.getElementById("student-email").value
+      studentName = document.getElementById("student-name").value.trim()
+      studentEmail = document.getElementById("student-email").value.trim()
 
       if(!studentName || !studentEmail){
-        alert("Please enter name and email")
+        alert("Please enter your name and email")
         return
       }
 
@@ -240,11 +420,10 @@
       document.getElementById("start-screen").style.display = "none"
       document.getElementById("quiz-screen").style.display = "block"
       document.getElementById("progress-container").style.display = "block"
-      document.getElementById("score").style.display = "block"
       document.getElementById("restart-btn").style.display = "none"
       document.getElementById("certificate").style.display = "none"
 
-      document.getElementById("score").innerText = "Score: 0"
+      document.getElementById("score").innerText = "0"
       document.getElementById("result").innerText = ""
       document.getElementById("final-level").innerText = ""
 
@@ -259,12 +438,14 @@
 
       document.getElementById("question").innerText = q.question
       document.getElementById("question-level").innerText = "Difficulty: " + q.level
+      document.getElementById("question-number").innerText = (current + 1) + " / " + questions.length
 
       const optionsDiv = document.getElementById("options")
       optionsDiv.innerHTML = ""
 
       q.options.forEach(option => {
         const btn = document.createElement("button")
+        btn.className = "option-btn"
         btn.innerText = option
         btn.onclick = () => checkAnswer(option, btn)
         optionsDiv.appendChild(btn)
@@ -341,7 +522,7 @@
         document.getElementById("result").innerText = "❌ Correct answer: " + data.correctAnswer
       }
 
-      document.getElementById("score").innerText = "Score: " + score
+      document.getElementById("score").innerText = score
 
       current++
       updateProgress()
@@ -361,6 +542,7 @@
 
       document.getElementById("question").innerText = "🎉 Test Finished!"
       document.getElementById("question-level").innerText = ""
+      document.getElementById("question-number").innerText = questions.length + " / " + questions.length
       document.getElementById("options").innerHTML = ""
       document.getElementById("result").innerText = "Final score: " + score + " / " + questions.length
       document.getElementById("final-level").innerText = "Estimated level: " + level
@@ -373,7 +555,7 @@
       document.getElementById("restart-btn").style.display = "block"
       document.getElementById("progress-bar").style.width = "100%"
 
-      await fetch("https://script.google.com/macros/s/AKfycbz-wqwXuZ61kH9EX_OPZ5RLCXdiBciccB_OqPMhIGWOamlh1LDf1d-7OjHk58njN4dG/exec", {
+      await fetch("COLE_AQUI_A_URL_DO_GOOGLE_SCRIPT", {
         method: "POST",
         headers: {
           "Content-Type": "text/plain;charset=utf-8"
@@ -390,7 +572,6 @@
     function restartQuiz(){
       document.getElementById("student-name").value = ""
       document.getElementById("student-email").value = ""
-
       document.getElementById("start-screen").style.display = "block"
       document.getElementById("quiz-screen").style.display = "none"
       document.getElementById("restart-btn").style.display = "none"
