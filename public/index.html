@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>English Level Test with Meganzinha</title>
 
 <style>
@@ -26,7 +29,7 @@ box-shadow:0 20px 50px rgba(0,0,0,0.1);
 
 h1{
 margin:0;
-font-size:38px;
+font-size:36px;
 }
 
 .subtitle{
@@ -69,18 +72,6 @@ box-shadow:0 10px 20px rgba(88,204,2,0.2);
 button:disabled{
 background:#cbd5e1;
 cursor:not-allowed;
-box-shadow:none;
-transform:none;
-}
-
-#quiz-screen,
-#final-screen{
-display:none;
-}
-
-#question{
-font-size:28px;
-margin-bottom:20px;
 }
 
 .option{
@@ -94,6 +85,8 @@ border:1px solid #dbe7f3;
 font-size:17px;
 cursor:pointer;
 text-align:left;
+color:#000;
+font-weight:500;
 }
 
 .option:hover{
@@ -103,7 +96,8 @@ background:#eef7ff;
 .option.selected{
 background:#ecfdf3;
 border:2px solid #58cc02;
-color:#14532d;
+color:#000;
+font-weight:600;
 }
 
 .progress-container{
@@ -138,7 +132,13 @@ color:red;
 font-weight:bold;
 }
 
+#quiz-screen,
+#final-screen{
+display:none;
+}
+
 </style>
+
 </head>
 
 <body>
@@ -179,8 +179,6 @@ font-weight:bold;
 
 <h3 id="final-score"></h3>
 
-<h3 id="final-level"></h3>
-
 <h2>Review</h2>
 
 <div id="review-list"></div>
@@ -196,19 +194,33 @@ font-weight:bold;
 var questions=[
 
 {question:"She __ to school every day.",options:["go","goes","going","gone"],answer:"goes"},
+
 {question:"I __ coffee yesterday.",options:["drink","drank","drunk","drinking"],answer:"drank"},
+
 {question:"They __ watching TV now.",options:["is","are","am","be"],answer:"are"},
+
 {question:"He __ finished his homework.",options:["have","has","had","having"],answer:"has"},
+
 {question:"We __ to the park tomorrow.",options:["go","went","will go","gone"],answer:"will go"},
+
 {question:"If I __ more time, I would study more.",options:["have","had","will have","am having"],answer:"had"},
+
 {question:"She has lived here __ 2019.",options:["for","since","from","at"],answer:"since"},
+
 {question:"This is the book __ I told you about.",options:["who","where","which","what"],answer:"which"},
+
 {question:"He is __ than his brother.",options:["tall","taller","more tall","most tall"],answer:"taller"},
+
 {question:"They were tired, __ they kept working.",options:["but","so","because","or"],answer:"but"},
+
 {question:"She __ English for five years.",options:["studies","studied","has studied","study"],answer:"has studied"},
+
 {question:"I didn't see __ at the party.",options:["nobody","anybody","somebody","everybody"],answer:"anybody"},
+
 {question:"This movie is __ interesting.",options:["very","much","many","more"],answer:"very"},
+
 {question:"He asked me __ I was from.",options:["where","what","who","how"],answer:"where"},
+
 {question:"If it rains, we __ at home.",options:["stay","will stay","stayed","staying"],answer:"will stay"}
 
 ]
@@ -217,16 +229,6 @@ var current=0
 var score=0
 var selectedAnswer=""
 var answersReview=[]
-
-function calculateLevel(score){
-
-if(score<=5) return "A1 Beginner"
-if(score<=8) return "A2 Elementary"
-if(score<=11) return "B1 Intermediate"
-if(score<=13) return "B2 Upper Intermediate"
-return "C1 Advanced"
-
-}
 
 function startQuiz(){
 
@@ -327,8 +329,6 @@ document.getElementById("final-screen").style.display="block"
 
 document.getElementById("final-score").innerText="Score: "+score+" / "+questions.length
 
-document.getElementById("final-level").innerText="Your level: "+calculateLevel(score)
-
 var review=document.getElementById("review-list")
 
 answersReview.forEach(function(item){
@@ -339,7 +339,7 @@ card.className="review-card"
 
 card.innerHTML=
 "<p>"+item.question+"</p>"+
-"<p class='"+(item.isCorrect?"correct":"wrong")+"'>Your answer: "+item.selected+"</p>"+
+"<p class='"+(item.isCorrect?'correct':'wrong')+"'>Your answer: "+item.selected+"</p>"+
 "<p class='correct'>Correct answer: "+item.correct+"</p>"
 
 review.appendChild(card)
