@@ -13,7 +13,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 24px;
+      padding: 20px;
       font-family: Arial, sans-serif;
       color: #0f172a;
       background:
@@ -29,18 +29,18 @@
 
     .hero {
       text-align: center;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
       padding-top: 8px;
     }
 
     .top-nav {
       display: flex;
       justify-content: center;
-      gap: 18px;
+      gap: 14px;
       flex-wrap: wrap;
       font-size: 13px;
       color: #475569;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       font-weight: 700;
     }
 
@@ -52,7 +52,6 @@
       color: #2f7d32;
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.2px;
       margin-bottom: 16px;
       border: 1px solid #d7f0d9;
     }
@@ -207,7 +206,8 @@
       gap: 18px;
     }
 
-    .feature-card {
+    .feature-card,
+    .mini-card {
       background: rgba(255, 255, 255, 0.92);
       border: 1px solid #e6edf6;
       border-radius: 24px;
@@ -215,7 +215,8 @@
       box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
     }
 
-    .feature-card h3 {
+    .feature-card h3,
+    .mini-card h3 {
       margin: 0 0 14px;
       font-size: 28px;
       color: #0f172a;
@@ -255,14 +256,6 @@
       color: #64748b;
       font-size: 14px;
       line-height: 1.5;
-    }
-
-    .mini-card {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid #e6edf6;
-      border-radius: 24px;
-      padding: 22px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
     }
 
     .mini-row {
@@ -536,18 +529,38 @@
         font-size: 36px;
       }
 
-      .panel-body {
-        padding: 22px;
+      .hero p {
+        font-size: 16px;
       }
 
-      .main-card,
+      .panel-body {
+        padding: 20px;
+      }
+
+      .glass-card,
       .feature-card,
       .mini-card {
         border-radius: 22px;
       }
 
+      .section-title {
+        font-size: 26px;
+      }
+
       #question {
-        font-size: 30px;
+        font-size: 28px;
+      }
+
+      .option-inner {
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .option-letter {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        font-size: 14px;
       }
 
       .option-text {
@@ -561,6 +574,11 @@
       .primary-btn,
       .secondary-btn {
         width: 100%;
+      }
+
+      .top-nav {
+        gap: 10px;
+        font-size: 12px;
       }
     }
   </style>
@@ -576,12 +594,12 @@
         <span>•</span>
         <span>Instant Review</span>
         <span>•</span>
-        <span>Professional Layout</span>
+        <span>Premium Mobile Friendly</span>
       </div>
 
-      <div class="hero-badge">Premium Placement Experience</div>
+      <div class="hero-badge">Advanced English Placement Test</div>
       <h1>English Level Test with Meganzinha</h1>
-      <p>Provide a more elegant placement test experience with a clean interface, premium layout, and detailed review at the end.</p>
+      <p>Pinpoint your English level with a sleek, professional placement test that works beautifully on both desktop and mobile.</p>
     </div>
 
     <div class="main-grid">
@@ -594,17 +612,17 @@
         <div class="panel-body">
           <div id="start-screen">
             <h2 class="section-title">Begin your test</h2>
-            <p class="section-subtitle">Answer 15 carefully selected questions to estimate the student’s English level and review every answer at the end.</p>
+            <p class="section-subtitle">Start with 15 carefully selected questions designed to estimate English level and give a detailed review at the end.</p>
 
             <div class="form-grid">
               <div class="input-wrap">
                 <label class="input-label">Student name</label>
-                <input id="student-name" placeholder="Type your full name">
+                <input id="student-name" placeholder="Enter your full name">
               </div>
 
               <div class="input-wrap">
                 <label class="input-label">Student email</label>
-                <input id="student-email" placeholder="Type your best email">
+                <input id="student-email" placeholder="Enter your best email">
               </div>
             </div>
 
@@ -643,7 +661,7 @@
             </div>
 
             <h3 class="review-title">Detailed Review</h3>
-            <p class="review-subtitle">Review all questions, compare the selected answer with the correct answer, and identify improvement areas clearly.</p>
+            <p class="review-subtitle">Check all your answers, compare them with the correct answers, and clearly see what to improve next.</p>
 
             <div id="review-list"></div>
 
@@ -656,14 +674,14 @@
 
       <div class="feature-stack">
         <div class="feature-card">
-          <h3>Why this version feels more premium</h3>
+          <h3>Why take this test?</h3>
 
           <div class="feature-list">
             <div class="feature-item">
               <div class="feature-icon">📝</div>
               <div class="feature-text">
                 <strong>15 Expert Questions</strong>
-                <span>Structured questions that feel closer to a real placement or intake assessment.</span>
+                <span>Structured questions to assess grammar, reading intuition, and placement-test readiness.</span>
               </div>
             </div>
 
@@ -671,42 +689,44 @@
               <div class="feature-icon">📊</div>
               <div class="feature-text">
                 <strong>Instant Level Analysis</strong>
-                <span>Show the score immediately and estimate the student’s level as soon as the test ends.</span>
+                <span>Evaluate performance immediately after the test and estimate the student’s English level.</span>
               </div>
             </div>
 
             <div class="feature-item">
               <div class="feature-icon">✅</div>
               <div class="feature-text">
-                <strong>Detailed Answer Review</strong>
-                <span>Students can check what they got right, what they missed, and the correct answer for each item.</span>
+                <strong>In-Depth Score Review</strong>
+                <span>Review every question, catch mistakes, and compare selected answers with the correct answers.</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="mini-card">
+          <h3>What makes it feel premium?</h3>
+
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Professional first impression</strong>
-              <span>Better for parents, students, and leads arriving from Instagram, WhatsApp, or ads.</span>
+              <strong>Elegant first impression</strong>
+              <span>Ideal for students arriving from Instagram, WhatsApp, or ads.</span>
             </div>
           </div>
 
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Cleaner conversion flow</strong>
-              <span>The student starts the test quickly without confusion and sees value right away.</span>
+              <strong>Mobile-friendly design</strong>
+              <span>The layout adapts well to phones, with comfortable spacing and readable cards.</span>
             </div>
           </div>
 
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Easy to evolve later</strong>
-              <span>You can add timer, certificate, Google Sheets integration, and paid access later.</span>
+              <strong>Ready to evolve later</strong>
+              <span>You can add dashboard, Google Sheets, timer, or booking flow later without rebuilding everything.</span>
             </div>
           </div>
         </div>
