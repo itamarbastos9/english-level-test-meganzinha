@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Level Test with Meganzinha</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -50,17 +51,9 @@
       margin-top: 15px;
     }
 
-    .status {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    .ok {
-      color: green;
-    }
-
-    .error {
-      color: red;
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
     }
 
     .option {
@@ -74,6 +67,7 @@
       border: none;
       font-size: 16px;
       text-align: left;
+      color: #222;
     }
 
     .option.selected {
@@ -81,14 +75,41 @@
       color: white;
     }
 
+    .status {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .ok {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .review-card {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+
+    .wrong {
+      color: red;
+      font-weight: bold;
+    }
+
     #quiz-screen,
     #final-screen {
       display: none;
-    }
-
-    #next-btn:disabled {
-      background: #ccc;
-      cursor: not-allowed;
     }
   </style>
 </head>
@@ -99,8 +120,8 @@
     <p id="js-status" class="status error">JavaScript not loaded yet</p>
 
     <div id="start-screen">
-      <input id="student-name" type="text" placeholder="Your name" />
-      <input id="student-email" type="email" placeholder="Your email" />
+      <input id="student-name" type="text" placeholder="Your name">
+      <input id="student-email" type="email" placeholder="Your email">
       <button id="start-btn" type="button">Start Test</button>
     </div>
 
