@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Your Results</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+padding:30px;
+margin:0;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 6px 20px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+color:#58cc02;
+}
+
+.review-card{
+border:1px solid #eee;
+padding:20px;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+.correct{
+color:green;
+font-weight:bold;
+}
+
+.wrong{
+color:red;
+font-weight:bold;
+}
+
+.correct-answer{
+color:#1c8f3a;
+}
+
+button{
+background:#58cc02;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Test Review</h1>
+
+<h3 id="score"></h3>
+
+<div id="review"></div>
+
+<button onclick="location.href='/'">Take Test Again</button>
+
+</div>
+
+<script>
+
+const name=localStorage.getItem("studentName")
+const score=localStorage.getItem("studentScore")
+const level=localStorage.getItem("studentLevel")
+const total=localStorage.getItem("totalQuestions")
+
+const answers=JSON.parse(localStorage.getItem("answersReview"))
+
+document.getElementById("score").innerText=
+${name} — Score: ${score}/${total} — Level: ${level}
+
+const reviewDiv=document.getElementById("review")
+
+answers.forEach(item=>{
+
+const card=document.createElement("div")
+
+card.className="review-card"
+
+card.innerHTML=`
+
+<h3>Question ${item.questionNumber}</h3>
+
+<p>${item.question}</p>
+
+<p class="${item.isCorrect ? "correct":"wrong"}">
+Your answer: ${item.selectedAnswer}
+</p>
+
+<p class="correct-answer">
+Correct answer: ${item.correctAnswer}
+</p>
+
+`
+
+reviewDiv.appendChild(card)
+
+})
+
+</script>
+
+</body>
+
+</html>
