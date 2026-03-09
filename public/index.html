@@ -20,7 +20,7 @@
       background: white;
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
@@ -88,6 +88,7 @@
       height: 12px;
       background: #58cc02;
       width: 0%;
+      transition: width 0.2s ease;
     }
 
     .review-card {
@@ -115,34 +116,34 @@
     <h1>English Level Test with Meganzinha</h1>
 
     <div id="start-screen">
-      <input id="student-name" placeholder="Your name">
-      <input id="student-email" placeholder="Your email">
+      <input id="student-name" type="text" placeholder="Your name">
+      <input id="student-email" type="email" placeholder="Your email">
       <br>
-      <button onclick="startQuiz()">Start Test</button>
+      <button id="start-btn" type="button">Start Test</button>
     </div>
 
-    <div id="quiz-screen" style="display:none">
+    <div id="quiz-screen" style="display:none;">
       <h3 id="question-counter"></h3>
       <h2 id="question"></h2>
       <div id="options"></div>
-      <button id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+      <button id="next-btn" type="button" disabled>Next</button>
 
       <div class="progress-container">
         <div id="progress-bar"></div>
       </div>
     </div>
 
-    <div id="final-screen" style="display:none">
+    <div id="final-screen" style="display:none;">
       <h2>Your Result</h2>
       <p id="final-score"></p>
       <h3>Review</h3>
       <div id="review-list"></div>
-      <button onclick="location.reload()">Restart</button>
+      <button id="restart-btn" type="button">Restart</button>
     </div>
   </div>
 
   <script>
-    let questions = [
+    var questions = [
       {
         question: "She __ to school every day.",
         options: ["go", "goes", "going", "gone"],
@@ -170,59 +171,79 @@
       }
     ];
 
-    let current = 0;
-    let score = 0;
-    let selectedAnswer = null;
-    let answersReview = [];
+    var current = 0;
+    var score = 0;
+    var selectedAnswer = "";
+    var answersReview = [];
+
+    var startScreen = document.getElementById("start-screen");
+    var quizScreen = document.getElementById("quiz-screen");
+    var finalScreen = document.getElementById("final-screen");
+
+    var nameInput = document.getElementById("student-name");
+    var emailInput = document.getElementById("student-email");
+
+    var startBtn = document.getElementById("start-btn");
+    var nextBtn = document.getElementById("next-btn");
+    var restartBtn = document.getElementById("restart-btn");
+
+    var questionCounter = document.getElementById("question-counter");
+    var questionEl = document.getElementById("question");
+    var optionsEl = document.getElementById("options");
+    var progressBar = document.getElementById("progress-bar");
+    var finalScore = document.getElementById("final-score");
+    var reviewList = document.getElementById("review-list");
 
     function startQuiz() {
-      const name = document.getElementById("student-name").value.trim();
-      const email = document.getElementById("student-email").value.trim();
+      var name = nameInput.value.trim();
+      var email = emailInput.value.trim();
 
       if (!name || !email) {
         alert("Enter name and email");
         return;
       }
 
-      document.getElementById("start-screen").style.display = "none";
-      document.getElementById("quiz-screen").style.display = "block";
+      current = 0;
+      score = 0;
+      selectedAnswer = "";
+      answersReview = [];
+
+      startScreen.style.display = "none";
+      quizScreen.style.display = "block";
+      finalScreen.style.display = "none";
+      progressBar.style.width = "0%";
 
       showQuestion();
     }
 
     function showQuestion() {
-      selectedAnswer = null;
+      selectedAnswer = "";
+      nextBtn.disabled = true;
 
-      const q = questions[current];
-
-      document.getElementById("question-counter").innerText =
-        "Question " + (current + 1) + " of " + questions.length;
-
-      document.getElementById("question").innerText = q.question;
-
-      const optionsDiv = document.getElementById("options");
-      optionsDiv.innerHTML = "";
+      var q = questions[current];
+      questionCounter.textContent = "Question " + (current + 1) + " of " + questions.length;
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = "";
 
       q.options.forEach(function(option) {
-        const btn = document.createElement("button");
-        btn.className = "option";
-        btn.innerText = option;
+        var btn = document.createElement("button");
         btn.type = "button";
+        btn.className = "option";
+        btn.textContent = option;
 
-        btn.onclick = function() {
-          document.querySelectorAll(".option").forEach(function(b) {
-            b.classList.remove("selected");
+        btn.addEventListener("click", function() {
+          var allOptions = document.querySelectorAll(".option");
+          allOptions.forEach(function(item) {
+            item.classList.remove("selected");
           });
 
           btn.classList.add("selected");
           selectedAnswer = option;
-          document.getElementById("next-btn").disabled = false;
-        };
+          nextBtn.disabled = false;
+        });
 
-        optionsDiv.appendChild(btn);
+        optionsEl.appendChild(btn);
       });
-
-      document.getElementById("next-btn").disabled = true;
     }
 
     function nextQuestion() {
@@ -231,11 +252,11 @@
         return;
       }
 
-      const q = questions[current];
-      const isCorrect = selectedAnswer === q.answer;
+      var q = questions[current];
+      var isCorrect = selectedAnswer === q.answer;
 
       if (isCorrect) {
-        score++;
+        score = score + 1;
       }
 
       answersReview.push({
@@ -246,10 +267,8 @@
         isCorrect: isCorrect
       });
 
-      current++;
-
-      document.getElementById("progress-bar").style.width =
-        (current / questions.length * 100) + "%";
+      current = current + 1;
+      progressBar.style.width = ((current / questions.length) * 100) + "%";
 
       if (current < questions.length) {
         showQuestion();
@@ -259,28 +278,44 @@
     }
 
     function finishTest() {
-      document.getElementById("quiz-screen").style.display = "none";
-      document.getElementById("final-screen").style.display = "block";
+      quizScreen.style.display = "none";
+      finalScreen.style.display = "block";
 
-      document.getElementById("final-score").innerText =
-        "Score: " + score + " / " + questions.length;
-
-      const review = document.getElementById("review-list");
-      review.innerHTML = "";
+      finalScore.textContent = "Score: " + score + " / " + questions.length;
+      reviewList.innerHTML = "";
 
       answersReview.forEach(function(item) {
-        const card = document.createElement("div");
+        var card = document.createElement("div");
         card.className = "review-card";
 
-        card.innerHTML =
-          "<h4>Question " + item.questionNumber + "</h4>" +
-          "<p>" + item.question + "</p>" +
-          "<p class='" + (item.isCorrect ? "correct" : "wrong") + "'>Your answer: " + item.selected + "</p>" +
-          "<p class='correct'>Correct answer: " + item.correct + "</p>";
+        var title = document.createElement("h4");
+        title.textContent = "Question " + item.questionNumber;
 
-        review.appendChild(card);
+        var questionText = document.createElement("p");
+        questionText.textContent = item.question;
+
+        var answerText = document.createElement("p");
+        answerText.textContent = "Your answer: " + item.selected;
+        answerText.className = item.isCorrect ? "correct" : "wrong";
+
+        var correctText = document.createElement("p");
+        correctText.textContent = "Correct answer: " + item.correct;
+        correctText.className = "correct";
+
+        card.appendChild(title);
+        card.appendChild(questionText);
+        card.appendChild(answerText);
+        card.appendChild(correctText);
+
+        reviewList.appendChild(card);
       });
     }
+
+    startBtn.addEventListener("click", startQuiz);
+    nextBtn.addEventListener("click", nextQuestion);
+    restartBtn.addEventListener("click", function() {
+      location.reload();
+    });
   </script>
 </body>
 </html>
