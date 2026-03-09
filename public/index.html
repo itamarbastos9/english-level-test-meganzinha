@@ -15,22 +15,33 @@
       min-height: 100vh;
       padding: 24px;
       font-family: Arial, sans-serif;
+      color: #0f172a;
       background:
-        radial-gradient(circle at top left, #dff7df 0%, transparent 28%),
-        radial-gradient(circle at top right, #dfefff 0%, transparent 30%),
-        linear-gradient(180deg, #f7fbff 0%, #edf4ff 100%);
-      color: #111827;
+        radial-gradient(circle at top left, rgba(186, 230, 253, 0.45), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(187, 247, 208, 0.45), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
     }
 
     .page {
-      max-width: 980px;
+      max-width: 1120px;
       margin: 0 auto;
     }
 
     .hero {
       text-align: center;
       margin-bottom: 26px;
-      padding-top: 10px;
+      padding-top: 8px;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 18px;
+      font-weight: 700;
     }
 
     .hero-badge {
@@ -41,14 +52,14 @@
       color: #2f7d32;
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
       margin-bottom: 16px;
       border: 1px solid #d7f0d9;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: 48px;
+      font-size: 50px;
       line-height: 1.05;
       color: #0f172a;
     }
@@ -61,7 +72,14 @@
       line-height: 1.6;
     }
 
-    .main-card {
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .glass-card {
       background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(226, 232, 240, 0.9);
@@ -70,30 +88,31 @@
       overflow: hidden;
     }
 
-    .card-inner {
-      padding: 36px;
-    }
-
-    .top-strip {
+    .panel-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       padding: 18px 24px;
       background: linear-gradient(90deg, #f7fff3 0%, #f3f8ff 100%);
       border-bottom: 1px solid #e9eef5;
       flex-wrap: wrap;
     }
 
-    .top-strip-left {
-      font-weight: 700;
+    .panel-title {
+      font-weight: 800;
       color: #0f172a;
-      font-size: 15px;
+      font-size: 16px;
     }
 
-    .top-strip-right {
-      font-size: 14px;
+    .panel-meta {
       color: #64748b;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .panel-body {
+      padding: 28px;
     }
 
     .section-title {
@@ -103,7 +122,7 @@
     }
 
     .section-subtitle {
-      margin: 0 0 24px;
+      margin: 0 0 22px;
       color: #64748b;
       line-height: 1.6;
       font-size: 16px;
@@ -112,7 +131,7 @@
     .form-grid {
       display: grid;
       gap: 14px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .input-wrap {
@@ -145,16 +164,20 @@
       box-shadow: 0 0 0 4px rgba(88, 204, 2, 0.12);
     }
 
-    .primary-btn {
+    .primary-btn,
+    .secondary-btn {
       border: none;
       border-radius: 16px;
-      background: linear-gradient(180deg, #67db12 0%, #58cc02 100%);
-      color: white;
       padding: 16px 24px;
       font-size: 16px;
       font-weight: 800;
       cursor: pointer;
       transition: 0.18s ease;
+    }
+
+    .primary-btn {
+      background: linear-gradient(180deg, #67db12 0%, #58cc02 100%);
+      color: white;
       box-shadow: 0 14px 28px rgba(88, 204, 2, 0.22);
     }
 
@@ -170,20 +193,104 @@
     }
 
     .secondary-btn {
-      border: none;
-      border-radius: 16px;
       background: #111827;
       color: white;
-      padding: 16px 24px;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: 0.18s ease;
     }
 
     .secondary-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 10px 20px rgba(17, 24, 39, 0.16);
+    }
+
+    .feature-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #e6edf6;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      color: #0f172a;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: #eef6ff;
+    }
+
+    .feature-text strong {
+      display: block;
+      color: #0f172a;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .feature-text span {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .mini-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #e6edf6;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+    }
+
+    .mini-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 14px;
+      align-items: flex-start;
+    }
+
+    .mini-dot {
+      width: 14px;
+      height: 14px;
+      margin-top: 4px;
+      border-radius: 50%;
+      background: #58cc02;
+    }
+
+    .mini-row strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+
+    .mini-row span {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.45;
     }
 
     #quiz-screen,
@@ -414,22 +521,28 @@
       border: 1px solid #bfdbfe;
     }
 
+    @media (max-width: 920px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 720px) {
       body {
         padding: 14px;
       }
 
-      .hero h1,
-      h1 {
+      .hero h1 {
         font-size: 36px;
       }
 
-      .card-inner {
+      .panel-body {
         padding: 22px;
       }
 
-      .container,
-      .main-card {
+      .main-card,
+      .feature-card,
+      .mini-card {
         border-radius: 22px;
       }
 
@@ -456,75 +569,145 @@
 <body>
   <div class="page">
     <div class="hero">
-      <div class="hero-badge">Professional Placement Experience</div>
-      <h1>English Level Test with Meganzinha</h1>
-      <p>Give your students a cleaner, more premium placement-test experience with a modern design and full review at the end.</p>
-    </div>
-
-    <div class="main-card">
-      <div class="top-strip">
-        <div class="top-strip-left">Meganzinha English Assessment</div>
-        <div class="top-strip-right">15 Questions • Instant Review • Professional Layout</div>
+      <div class="top-nav">
+        <span>Meganzinha English Assessment</span>
+        <span>•</span>
+        <span>15 Questions</span>
+        <span>•</span>
+        <span>Instant Review</span>
+        <span>•</span>
+        <span>Professional Layout</span>
       </div>
 
-      <div class="card-inner">
-        <div id="start-screen">
-          <h2 class="section-title">Start your test</h2>
-          <p class="section-subtitle">Enter your information and begin your placement test. Your result will be shown instantly when you finish.</p>
+      <div class="hero-badge">Premium Placement Experience</div>
+      <h1>English Level Test with Meganzinha</h1>
+      <p>Provide a more elegant placement test experience with a clean interface, premium layout, and detailed review at the end.</p>
+    </div>
 
-          <div class="form-grid">
-            <div class="input-wrap">
-              <label class="input-label">Student name</label>
-              <input id="student-name" placeholder="Type your full name">
-            </div>
-
-            <div class="input-wrap">
-              <label class="input-label">Student email</label>
-              <input id="student-email" placeholder="Type your best email">
-            </div>
-          </div>
-
-          <button class="primary-btn" onclick="startQuiz()">Start Test</button>
+    <div class="main-grid">
+      <div class="glass-card">
+        <div class="panel-top">
+          <div class="panel-title">Meganzinha English Assessment</div>
+          <div class="panel-meta">15 Questions</div>
         </div>
 
-        <div id="quiz-screen">
-          <div class="quiz-head">
-            <div id="question-counter" class="question-count"></div>
-            <div id="score-chip" class="score-chip">Current score: 0</div>
+        <div class="panel-body">
+          <div id="start-screen">
+            <h2 class="section-title">Begin your test</h2>
+            <p class="section-subtitle">Answer 15 carefully selected questions to estimate the student’s English level and review every answer at the end.</p>
+
+            <div class="form-grid">
+              <div class="input-wrap">
+                <label class="input-label">Student name</label>
+                <input id="student-name" placeholder="Type your full name">
+              </div>
+
+              <div class="input-wrap">
+                <label class="input-label">Student email</label>
+                <input id="student-email" placeholder="Type your best email">
+              </div>
+            </div>
+
+            <button class="primary-btn" onclick="startQuiz()">Start Test</button>
           </div>
 
-          <div class="progress-area">
-            <div class="progress-top">
-              <span>Progress</span>
-              <span id="progress-percent">0%</span>
+          <div id="quiz-screen">
+            <div class="quiz-head">
+              <div id="question-counter" class="question-count"></div>
+              <div id="score-chip" class="score-chip">Current score: 0</div>
             </div>
-            <div class="progress-container">
-              <div id="progress-bar"></div>
+
+            <div class="progress-area">
+              <div class="progress-top">
+                <span>Progress</span>
+                <span id="progress-percent">0%</span>
+              </div>
+              <div class="progress-container">
+                <div id="progress-bar"></div>
+              </div>
+            </div>
+
+            <h2 id="question"></h2>
+            <div id="options"></div>
+
+            <div class="quiz-actions">
+              <button id="next-btn" class="primary-btn" onclick="nextQuestion()" disabled>Next Question</button>
             </div>
           </div>
 
-          <h2 id="question"></h2>
-          <div id="options"></div>
+          <div id="final-screen">
+            <div class="result-banner">
+              <h2>Test completed</h2>
+              <div id="final-score" class="result-score"></div>
+              <div id="final-level" class="level-badge"></div>
+            </div>
 
-          <div class="quiz-actions">
-            <button id="next-btn" class="primary-btn" onclick="nextQuestion()" disabled>Next Question</button>
+            <h3 class="review-title">Detailed Review</h3>
+            <p class="review-subtitle">Review all questions, compare the selected answer with the correct answer, and identify improvement areas clearly.</p>
+
+            <div id="review-list"></div>
+
+            <div class="quiz-actions">
+              <button class="secondary-btn" onclick="location.reload()">Restart Test</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-stack">
+        <div class="feature-card">
+          <h3>Why this version feels more premium</h3>
+
+          <div class="feature-list">
+            <div class="feature-item">
+              <div class="feature-icon">📝</div>
+              <div class="feature-text">
+                <strong>15 Expert Questions</strong>
+                <span>Structured questions that feel closer to a real placement or intake assessment.</span>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">📊</div>
+              <div class="feature-text">
+                <strong>Instant Level Analysis</strong>
+                <span>Show the score immediately and estimate the student’s level as soon as the test ends.</span>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">✅</div>
+              <div class="feature-text">
+                <strong>Detailed Answer Review</strong>
+                <span>Students can check what they got right, what they missed, and the correct answer for each item.</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div id="final-screen">
-          <div class="result-banner">
-            <h2>Test completed</h2>
-            <div id="final-score" class="result-score"></div>
-            <div id="final-level" class="level-badge"></div>
+        <div class="mini-card">
+          <div class="mini-row">
+            <div class="mini-dot"></div>
+            <div>
+              <strong>Professional first impression</strong>
+              <span>Better for parents, students, and leads arriving from Instagram, WhatsApp, or ads.</span>
+            </div>
           </div>
 
-          <h3 class="review-title">Detailed Review</h3>
-          <p class="review-subtitle">Review all the questions, compare your answer with the correct one, and see exactly where you did well and where you can improve.</p>
+          <div class="mini-row">
+            <div class="mini-dot"></div>
+            <div>
+              <strong>Cleaner conversion flow</strong>
+              <span>The student starts the test quickly without confusion and sees value right away.</span>
+            </div>
+          </div>
 
-          <div id="review-list"></div>
-
-          <div class="quiz-actions">
-            <button class="secondary-btn" onclick="location.reload()">Restart Test</button>
+          <div class="mini-row">
+            <div class="mini-dot"></div>
+            <div>
+              <strong>Easy to evolve later</strong>
+              <span>You can add timer, certificate, Google Sheets integration, and paid access later.</span>
+            </div>
           </div>
         </div>
       </div>
