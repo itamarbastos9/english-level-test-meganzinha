@@ -28,10 +28,6 @@
       margin-bottom: 20px;
     }
 
-    h2 {
-      color: #222;
-    }
-
     input {
       width: 90%;
       padding: 12px;
@@ -49,7 +45,6 @@
       margin: 10px 0;
       border-radius: 10px;
       cursor: pointer;
-      transition: 0.2s;
       border: none;
       font-size: 16px;
       text-align: left;
@@ -75,19 +70,9 @@
       margin-top: 15px;
     }
 
-    button:hover {
-      background: #46a302;
-    }
-
     button:disabled {
-      background: #bdbdbd;
+      background: #ccc;
       cursor: not-allowed;
-    }
-
-    #question-counter {
-      font-size: 14px;
-      color: #777;
-      margin-bottom: 10px;
     }
 
     .progress-container {
@@ -103,59 +88,25 @@
       height: 12px;
       background: #58cc02;
       width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    .actions {
-      margin-top: 20px;
-    }
-
-    .summary {
-      text-align: center;
-      margin-bottom: 30px;
-      line-height: 1.8;
-      color: #333;
-    }
-
-    .level {
-      color: #58cc02;
-      font-weight: bold;
-      font-size: 20px;
     }
 
     .review-card {
-      text-align: left;
       background: #fafafa;
       border: 1px solid #e5e5e5;
       border-radius: 14px;
       padding: 20px;
       margin-bottom: 18px;
-    }
-
-    .review-card h3 {
-      margin-top: 0;
-      color: #222;
+      text-align: left;
     }
 
     .correct {
-      color: #1c8f3a;
+      color: green;
       font-weight: bold;
     }
 
     .wrong {
-      color: #d11a2a;
+      color: red;
       font-weight: bold;
-    }
-
-    .correct-answer {
-      color: #1c8f3a;
-      font-weight: bold;
-    }
-
-    .review-title {
-      margin-top: 30px;
-      margin-bottom: 20px;
-      color: #222;
     }
   </style>
 </head>
@@ -170,68 +121,73 @@
       <button onclick="startQuiz()">Start Test</button>
     </div>
 
-    <div id="quiz-screen" style="display:none;">
-      <div id="question-counter"></div>
+    <div id="quiz-screen" style="display:none">
+      <h3 id="question-counter"></h3>
       <h2 id="question"></h2>
       <div id="options"></div>
-
-      <div class="actions">
-        <button id="next-btn" onclick="nextQuestion()" disabled>Next</button>
-      </div>
+      <button id="next-btn" onclick="nextQuestion()" disabled>Next</button>
 
       <div class="progress-container">
         <div id="progress-bar"></div>
       </div>
     </div>
 
-    <div id="final-screen" style="display:none;">
+    <div id="final-screen" style="display:none">
       <h2>Your Result</h2>
-
-      <div class="summary">
-        <div><strong>Name:</strong> <span id="final-name"></span></div>
-        <div><strong>Email:</strong> <span id="final-email"></span></div>
-        <div><strong>Score:</strong> <span id="final-score"></span></div>
-        <div><strong>Level:</strong> <span id="final-level" class="level"></span></div>
-      </div>
-
-      <h2 class="review-title">Full Review</h2>
+      <p id="final-score"></p>
+      <h3>Review</h3>
       <div id="review-list"></div>
-
-      <button onclick="location.reload()">Restart Test</button>
+      <button onclick="location.reload()">Restart</button>
     </div>
   </div>
 
   <script>
-    let questions = [];
+    let questions = [
+      {
+        question: "She __ to school every day.",
+        options: ["go", "goes", "going", "gone"],
+        answer: "goes"
+      },
+      {
+        question: "I __ coffee yesterday.",
+        options: ["drink", "drank", "drunk", "drinking"],
+        answer: "drank"
+      },
+      {
+        question: "They __ watching TV now.",
+        options: ["is", "are", "am", "be"],
+        answer: "are"
+      },
+      {
+        question: "He __ finished his homework.",
+        options: ["have", "has", "had", "having"],
+        answer: "has"
+      },
+      {
+        question: "We __ to the park tomorrow.",
+        options: ["go", "went", "will go", "gone"],
+        answer: "will go"
+      }
+    ];
+
     let current = 0;
     let score = 0;
-
-    let studentName = "";
-    let studentEmail = "";
-
     let selectedAnswer = null;
     let answersReview = [];
 
-    async function startQuiz() {
-      studentName = document.getElementById("student-name").value.trim();
-      studentEmail = document.getElementById("student-email").value.trim();
+    function startQuiz() {
+      const name = document.getElementById("student-name").value.trim();
+      const email = document.getElementById("student-email").value.trim();
 
-      if (!studentName || !studentEmail) {
+      if (!name || !email) {
         alert("Enter name and email");
         return;
       }
-
-      await loadQuestions();
 
       document.getElementById("start-screen").style.display = "none";
       document.getElementById("quiz-screen").style.display = "block";
 
       showQuestion();
-    }
-
-    async function loadQuestions() {
-      const res = await fetch("/questions");
-      questions = await res.json();
     }
 
     function showQuestion() {
@@ -240,21 +196,22 @@
       const q = questions[current];
 
       document.getElementById("question-counter").innerText =
-        Question ${current + 1} of ${questions.length};
+        "Question " + (current + 1) + " of " + questions.length;
+
       document.getElementById("question").innerText = q.question;
 
       const optionsDiv = document.getElementById("options");
       optionsDiv.innerHTML = "";
 
-      q.options.forEach(option => {
+      q.options.forEach(function(option) {
         const btn = document.createElement("button");
         btn.className = "option";
         btn.innerText = option;
         btn.type = "button";
 
-        btn.onclick = () => {
-          document.querySelectorAll(".option").forEach(item => {
-            item.classList.remove("selected");
+        btn.onclick = function() {
+          document.querySelectorAll(".option").forEach(function(b) {
+            b.classList.remove("selected");
           });
 
           btn.classList.add("selected");
@@ -268,27 +225,14 @@
       document.getElementById("next-btn").disabled = true;
     }
 
-    async function nextQuestion() {
+    function nextQuestion() {
       if (!selectedAnswer) {
-        alert("Select an answer first");
+        alert("Select an answer");
         return;
       }
 
       const q = questions[current];
-
-      const res = await fetch("/questions/answer", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          id: q.id,
-          answer: selectedAnswer
-        })
-      });
-
-      const data = await res.json();
-      const isCorrect = data.correct;
+      const isCorrect = selectedAnswer === q.answer;
 
       if (isCorrect) {
         score++;
@@ -297,12 +241,13 @@
       answersReview.push({
         questionNumber: current + 1,
         question: q.question,
-        selectedAnswer: selectedAnswer,
-        correctAnswer: data.correctAnswer,
+        selected: selectedAnswer,
+        correct: q.answer,
         isCorrect: isCorrect
       });
 
       current++;
+
       document.getElementById("progress-bar").style.width =
         (current / questions.length * 100) + "%";
 
@@ -313,56 +258,27 @@
       }
     }
 
-    function calculateLevel(score) {
-      if (score <= 4) return "A1 Beginner";
-      if (score <= 8) return "A2 Elementary";
-      if (score <= 12) return "B1 Intermediate";
-      if (score <= 16) return "B2 Upper Intermediate";
-      return "C1 Advanced";
-    }
-
     function finishTest() {
-      const level = calculateLevel(score);
-
       document.getElementById("quiz-screen").style.display = "none";
       document.getElementById("final-screen").style.display = "block";
 
-      document.getElementById("final-name").innerText = studentName;
-      document.getElementById("final-email").innerText = studentEmail;
-      document.getElementById("final-score").innerText = ${score} / ${questions.length};
-      document.getElementById("final-level").innerText = level;
+      document.getElementById("final-score").innerText =
+        "Score: " + score + " / " + questions.length;
 
-      const reviewList = document.getElementById("review-list");
-      reviewList.innerHTML = "";
+      const review = document.getElementById("review-list");
+      review.innerHTML = "";
 
-      answersReview.forEach(item => {
+      answersReview.forEach(function(item) {
         const card = document.createElement("div");
         card.className = "review-card";
 
-        card.innerHTML = `
-          <h3>Question ${item.questionNumber}</h3>
-          <p><strong>Question:</strong> ${item.question}</p>
-          <p class="${item.isCorrect ? 'correct' : 'wrong'}">
-            <strong>Your answer:</strong> ${item.selectedAnswer}
-          </p>
-          <p class="correct-answer">
-            <strong>Correct answer:</strong> ${item.correctAnswer}
-          </p>
-        `;
+        card.innerHTML =
+          "<h4>Question " + item.questionNumber + "</h4>" +
+          "<p>" + item.question + "</p>" +
+          "<p class='" + (item.isCorrect ? "correct" : "wrong") + "'>Your answer: " + item.selected + "</p>" +
+          "<p class='correct'>Correct answer: " + item.correct + "</p>";
 
-        reviewList.appendChild(card);
-      });
-
-      const params = new URLSearchParams({
-        name: studentName,
-        email: studentEmail,
-        score: score,
-        level: level
-      });
-
-      fetch("https://script.google.com/macros/s/AKfycbz-wqwXuZ61kH9EX_OPZ5RLCXdiBciccB_OqPMhIGW0amlh1LDf1d-70jhK58njN4dG/exec?" + params.toString(), {
-        method: "GET",
-        mode: "no-cors"
+        review.appendChild(card);
       });
     }
   </script>
