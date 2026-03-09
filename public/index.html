@@ -12,23 +12,28 @@
 
     body {
       margin: 0;
+      min-height: 100vh;
       padding: 24px;
       font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #f6f9ff 0%, #eef4ff 100%);
-      color: #1f2937;
+      background:
+        radial-gradient(circle at top left, #dff7df 0%, transparent 28%),
+        radial-gradient(circle at top right, #dfefff 0%, transparent 30%),
+        linear-gradient(180deg, #f7fbff 0%, #edf4ff 100%);
+      color: #111827;
     }
 
-    .container {
-      max-width: 920px;
-      margin: 24px auto;
-      background: #ffffff;
-      border-radius: 28px;
-      padding: 36px;
-      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
-      border: 1px solid #e8eef8;
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
     }
 
-    .top-badge {
+    .hero {
+      text-align: center;
+      margin-bottom: 26px;
+      padding-top: 10px;
+    }
+
+    .hero-badge {
       display: inline-block;
       padding: 8px 14px;
       border-radius: 999px;
@@ -36,42 +41,103 @@
       color: #2f7d32;
       font-size: 13px;
       font-weight: 700;
-      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+      margin-bottom: 16px;
+      border: 1px solid #d7f0d9;
     }
 
-    h1 {
+    .hero h1 {
       margin: 0;
-      font-size: 42px;
-      line-height: 1.08;
-      color: #111827;
+      font-size: 48px;
+      line-height: 1.05;
+      color: #0f172a;
     }
 
-    .subtitle {
-      margin-top: 12px;
-      margin-bottom: 28px;
-      color: #6b7280;
-      font-size: 17px;
-      line-height: 1.5;
+    .hero p {
+      max-width: 760px;
+      margin: 16px auto 0;
+      color: #64748b;
+      font-size: 18px;
+      line-height: 1.6;
     }
 
-    .card {
-      background: #fbfdff;
-      border: 1px solid #e7eef7;
-      border-radius: 22px;
-      padding: 24px;
+    .main-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 30px;
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
+      overflow: hidden;
+    }
+
+    .card-inner {
+      padding: 36px;
+    }
+
+    .top-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 24px;
+      background: linear-gradient(90deg, #f7fff3 0%, #f3f8ff 100%);
+      border-bottom: 1px solid #e9eef5;
+      flex-wrap: wrap;
+    }
+
+    .top-strip-left {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 15px;
+    }
+
+    .top-strip-right {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 30px;
+      color: #0f172a;
+    }
+
+    .section-subtitle {
+      margin: 0 0 24px;
+      color: #64748b;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .input-wrap {
+      text-align: left;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #334155;
     }
 
     input {
       width: 100%;
-      padding: 15px 16px;
-      margin: 10px 0;
-      border-radius: 14px;
+      padding: 16px 16px;
+      border-radius: 16px;
       border: 1px solid #dbe3ee;
       background: #ffffff;
       font-size: 16px;
       color: #111827;
       outline: none;
       transition: 0.2s ease;
+      box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.02);
     }
 
     input:focus {
@@ -81,26 +147,43 @@
 
     .primary-btn {
       border: none;
-      border-radius: 14px;
-      background: #58cc02;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #67db12 0%, #58cc02 100%);
       color: white;
-      padding: 14px 22px;
+      padding: 16px 24px;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: 0.18s ease;
+      box-shadow: 0 14px 28px rgba(88, 204, 2, 0.22);
     }
 
     .primary-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(88, 204, 2, 0.22);
     }
 
     .primary-btn:disabled {
       background: #cbd5e1;
-      cursor: not-allowed;
       box-shadow: none;
+      cursor: not-allowed;
       transform: none;
+    }
+
+    .secondary-btn {
+      border: none;
+      border-radius: 16px;
+      background: #111827;
+      color: white;
+      padding: 16px 24px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .secondary-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(17, 24, 39, 0.16);
     }
 
     #quiz-screen,
@@ -108,7 +191,7 @@
       display: none;
     }
 
-    .quiz-top {
+    .quiz-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -117,29 +200,40 @@
       margin-bottom: 18px;
     }
 
-    .question-counter {
+    .question-count {
       font-size: 15px;
-      font-weight: 700;
-      color: #475569;
+      font-weight: 800;
+      color: #334155;
     }
 
-    .percent-badge {
+    .score-chip {
+      display: inline-block;
       padding: 8px 12px;
       border-radius: 999px;
-      background: #eff6ff;
-      color: #2563eb;
+      background: #eef6ff;
+      color: #1d4ed8;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
+      border: 1px solid #d7e7ff;
     }
 
-    .progress-wrap {
-      margin-bottom: 22px;
+    .progress-area {
+      margin-bottom: 24px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 700;
     }
 
     .progress-container {
       width: 100%;
-      height: 12px;
-      background: #e7edf6;
+      height: 14px;
+      background: #e9eff7;
       border-radius: 999px;
       overflow: hidden;
     }
@@ -153,7 +247,7 @@
 
     #question {
       margin: 0 0 24px;
-      font-size: 36px;
+      font-size: 38px;
       line-height: 1.25;
       color: #0f172a;
     }
@@ -165,48 +259,49 @@
 
     .option {
       width: 100%;
-      border: 2px solid #dbe7f3;
+      border: 2px solid #dde7f1;
       background: #ffffff;
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 0;
       cursor: pointer;
       text-align: left;
       transition: 0.18s ease;
       overflow: hidden;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.03);
     }
 
     .option:hover {
-      border-color: #93c5fd;
-      background: #f8fbff;
+      border-color: #9cc7ff;
+      background: #fbfdff;
       transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.06);
     }
 
     .option.selected {
       border-color: #58cc02;
       background: #f3fff0;
-      box-shadow: 0 12px 24px rgba(88, 204, 2, 0.12);
+      box-shadow: 0 16px 32px rgba(88, 204, 2, 0.12);
     }
 
     .option-inner {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       padding: 18px;
     }
 
     .option-letter {
-      width: 42px;
-      height: 42px;
-      min-width: 42px;
-      border-radius: 12px;
-      background: #eef4ff;
-      color: #1d4ed8;
+      width: 46px;
+      min-width: 46px;
+      height: 46px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
+      background: #eef4ff;
+      color: #1d4ed8;
       font-size: 16px;
+      font-weight: 800;
     }
 
     .option.selected .option-letter {
@@ -217,61 +312,67 @@
     .option-text {
       color: #111827;
       font-size: 18px;
-      font-weight: 600;
-      line-height: 1.4;
+      font-weight: 700;
+      line-height: 1.45;
     }
 
-    .actions {
+    .quiz-actions {
       display: flex;
       justify-content: flex-end;
-      margin-top: 22px;
+      margin-top: 24px;
     }
 
-    .result-box {
-      background: linear-gradient(180deg, #f6fff2 0%, #effde8 100%);
-      border: 1px solid #d8f2c1;
-      border-radius: 22px;
-      padding: 24px;
+    .result-banner {
+      background: linear-gradient(180deg, #f7fff3 0%, #eefde7 100%);
+      border: 1px solid #d9f1c8;
+      border-radius: 24px;
+      padding: 26px;
       margin-bottom: 26px;
     }
 
-    .result-box h2 {
+    .result-banner h2 {
       margin: 0 0 10px;
       font-size: 34px;
       color: #166534;
     }
 
     .result-score {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 800;
       color: #111827;
-      margin: 8px 0;
+      margin-bottom: 12px;
     }
 
     .level-badge {
       display: inline-block;
-      margin-top: 10px;
-      padding: 10px 14px;
+      padding: 10px 16px;
       border-radius: 999px;
       background: #dcfce7;
       color: #166534;
-      font-weight: 800;
       font-size: 15px;
+      font-weight: 800;
+      border: 1px solid #bbf7d0;
     }
 
     .review-title {
-      font-size: 28px;
-      margin: 0 0 14px;
+      margin: 0 0 10px;
+      font-size: 30px;
       color: #0f172a;
     }
 
+    .review-subtitle {
+      margin: 0 0 22px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
     .review-card {
-      border: 1px solid #e5e7eb;
+      border: 1px solid #e6eaf0;
       background: #ffffff;
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 22px;
       margin-top: 16px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.04);
     }
 
     .review-card h4 {
@@ -282,17 +383,17 @@
 
     .review-question {
       margin: 0 0 14px;
-      color: #334155;
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.6;
+      color: #334155;
     }
 
     .review-line {
       margin-top: 10px;
       padding: 12px 14px;
       border-radius: 14px;
-      font-weight: 700;
       font-size: 15px;
+      font-weight: 800;
     }
 
     .correct {
@@ -313,33 +414,39 @@
       border: 1px solid #bfdbfe;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 720px) {
       body {
         padding: 14px;
       }
 
-      .container {
-        padding: 22px;
-        border-radius: 20px;
+      .hero h1,
+      h1 {
+        font-size: 36px;
       }
 
-      h1 {
-        font-size: 34px;
+      .card-inner {
+        padding: 22px;
+      }
+
+      .container,
+      .main-card {
+        border-radius: 22px;
       }
 
       #question {
-        font-size: 28px;
+        font-size: 30px;
       }
 
       .option-text {
         font-size: 16px;
       }
 
-      .actions {
+      .quiz-actions {
         justify-content: stretch;
       }
 
-      .primary-btn {
+      .primary-btn,
+      .secondary-btn {
         width: 100%;
       }
     }
@@ -347,49 +454,79 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="top-badge">Premium Placement Test</div>
-    <h1>English Level Test with Meganzinha</h1>
-    <p class="subtitle">Answer the questions and discover your English level with a more professional placement-test experience.</p>
-
-    <div id="start-screen" class="card">
-      <input id="student-name" placeholder="Your name">
-      <input id="student-email" placeholder="Your email">
-      <button class="primary-btn" onclick="startQuiz()">Start Test</button>
+  <div class="page">
+    <div class="hero">
+      <div class="hero-badge">Professional Placement Experience</div>
+      <h1>English Level Test with Meganzinha</h1>
+      <p>Give your students a cleaner, more premium placement-test experience with a modern design and full review at the end.</p>
     </div>
 
-    <div id="quiz-screen" class="card">
-      <div class="quiz-top">
-        <div id="question-counter" class="question-counter"></div>
-        <div id="percent-badge" class="percent-badge">0%</div>
+    <div class="main-card">
+      <div class="top-strip">
+        <div class="top-strip-left">Meganzinha English Assessment</div>
+        <div class="top-strip-right">15 Questions • Instant Review • Professional Layout</div>
       </div>
 
-      <div class="progress-wrap">
-        <div class="progress-container">
-          <div id="progress-bar"></div>
+      <div class="card-inner">
+        <div id="start-screen">
+          <h2 class="section-title">Start your test</h2>
+          <p class="section-subtitle">Enter your information and begin your placement test. Your result will be shown instantly when you finish.</p>
+
+          <div class="form-grid">
+            <div class="input-wrap">
+              <label class="input-label">Student name</label>
+              <input id="student-name" placeholder="Type your full name">
+            </div>
+
+            <div class="input-wrap">
+              <label class="input-label">Student email</label>
+              <input id="student-email" placeholder="Type your best email">
+            </div>
+          </div>
+
+          <button class="primary-btn" onclick="startQuiz()">Start Test</button>
         </div>
-      </div>
 
-      <h2 id="question"></h2>
-      <div id="options"></div>
+        <div id="quiz-screen">
+          <div class="quiz-head">
+            <div id="question-counter" class="question-count"></div>
+            <div id="score-chip" class="score-chip">Current score: 0</div>
+          </div>
 
-      <div class="actions">
-        <button id="next-btn" class="primary-btn" onclick="nextQuestion()" disabled>Next</button>
-      </div>
-    </div>
+          <div class="progress-area">
+            <div class="progress-top">
+              <span>Progress</span>
+              <span id="progress-percent">0%</span>
+            </div>
+            <div class="progress-container">
+              <div id="progress-bar"></div>
+            </div>
+          </div>
 
-    <div id="final-screen">
-      <div class="result-box">
-        <h2>Finished</h2>
-        <div id="final-score" class="result-score"></div>
-        <div id="final-level" class="level-badge"></div>
-      </div>
+          <h2 id="question"></h2>
+          <div id="options"></div>
 
-      <h3 class="review-title">Full Review</h3>
-      <div id="review-list"></div>
+          <div class="quiz-actions">
+            <button id="next-btn" class="primary-btn" onclick="nextQuestion()" disabled>Next Question</button>
+          </div>
+        </div>
 
-      <div class="actions">
-        <button class="primary-btn" onclick="location.reload()">Restart</button>
+        <div id="final-screen">
+          <div class="result-banner">
+            <h2>Test completed</h2>
+            <div id="final-score" class="result-score"></div>
+            <div id="final-level" class="level-badge"></div>
+          </div>
+
+          <h3 class="review-title">Detailed Review</h3>
+          <p class="review-subtitle">Review all the questions, compare your answer with the correct one, and see exactly where you did well and where you can improve.</p>
+
+          <div id="review-list"></div>
+
+          <div class="quiz-actions">
+            <button class="secondary-btn" onclick="location.reload()">Restart Test</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -427,21 +564,22 @@
     }
 
     function startQuiz() {
-      var name = document.getElementById("student-name").value;
-      var email = document.getElementById("student-email").value;
+      var name = document.getElementById("student-name").value.trim();
+      var email = document.getElementById("student-email").value.trim();
 
       if (!name || !email) {
         alert("Enter name and email");
         return;
       }
 
-      document.getElementById("start-screen").style.display = "none";
-      document.getElementById("quiz-screen").style.display = "block";
-
       current = 0;
       score = 0;
       selectedAnswer = "";
       answersReview = [];
+
+      document.getElementById("start-screen").style.display = "none";
+      document.getElementById("quiz-screen").style.display = "block";
+      document.getElementById("final-screen").style.display = "none";
 
       showQuestion();
     }
@@ -453,9 +591,10 @@
       var q = questions[current];
       document.getElementById("question-counter").innerText = "Question " + (current + 1) + " of " + questions.length;
       document.getElementById("question").innerText = q.question;
+      document.getElementById("score-chip").innerText = "Current score: " + score;
 
       var percent = Math.round((current / questions.length) * 100);
-      document.getElementById("percent-badge").innerText = percent + "%";
+      document.getElementById("progress-percent").innerText = percent + "%";
       document.getElementById("progress-bar").style.width = percent + "%";
 
       var optionsDiv = document.getElementById("options");
@@ -495,9 +634,11 @@
       }
 
       var q = questions[current];
-      var correct = (selectedAnswer === q.answer);
+      var correct = selectedAnswer === q.answer;
 
-      if (correct) score++;
+      if (correct) {
+        score++;
+      }
 
       answersReview.push({
         questionNumber: current + 1,
