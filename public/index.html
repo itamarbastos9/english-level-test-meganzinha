@@ -1,561 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English Level Test with Meganzinha</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Level Test with Meganzinha</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
-      margin: 0;
-      padding: 24px;
-      color: #1f2937;
-    }
+body{
+font-family:Arial;
+background:linear-gradient(180deg,#f8fbff,#eef4ff);
+margin:0;
+padding:30px;
+color:#1f2937;
+}
 
-    .container {
-      max-width: 860px;
-      margin: 30px auto;
-      background: #ffffff;
-      padding: 36px;
-      border-radius: 24px;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
-      border: 1px solid #edf2f7;
-    }
+.container{
+max-width:850px;
+margin:auto;
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.1);
+}
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: 42px;
-      line-height: 1.1;
-      color: #1f2937;
-    }
+h1{
+margin:0;
+font-size:38px;
+}
 
-    .subtitle {
-      margin: 0 0 24px;
-      color: #6b7280;
-      font-size: 17px;
-    }
+.subtitle{
+color:#6b7280;
+margin-bottom:25px;
+}
 
-    input {
-      width: 100%;
-      padding: 15px 16px;
-      margin: 10px 0;
-      border-radius: 14px;
-      border: 1px solid #dbe3ee;
-      font-size: 16px;
-      background: #f9fbff;
-      outline: none;
-      transition: 0.2s ease;
-    }
+input{
+width:100%;
+padding:14px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #dbe3ee;
+font-size:16px;
+background:#f9fbff;
+}
 
-    input:focus {
-      border-color: #58cc02;
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(88, 204, 2, 0.12);
-    }
+input:focus{
+border-color:#58cc02;
+outline:none;
+}
 
-    button {
-      padding: 14px 22px;
-      border: none;
-      border-radius: 14px;
-      background: #58cc02;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 16px;
-      transition: 0.2s ease;
-    }
+button{
+padding:14px 20px;
+border:none;
+border-radius:12px;
+background:#58cc02;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:15px;
+}
 
-    button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(88, 204, 2, 0.20);
-    }
+button:hover{
+transform:translateY(-1px);
+box-shadow:0 10px 20px rgba(88,204,2,0.2);
+}
 
-    button:disabled {
-      background: #cbd5e1;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-    }
+button:disabled{
+background:#cbd5e1;
+cursor:not-allowed;
+box-shadow:none;
+transform:none;
+}
 
-    .status {
-      margin-top: 6px;
-      margin-bottom: 18px;
-      font-weight: bold;
-      font-size: 15px;
-    }
+#quiz-screen,
+#final-screen{
+display:none;
+}
 
-    .ok {
-      color: #16a34a;
-    }
+#question{
+font-size:28px;
+margin-bottom:20px;
+}
 
-    #quiz-screen,
-    #final-screen {
-      display: none;
-    }
+.option{
+display:block;
+width:100%;
+background:#f8fbff;
+padding:16px;
+margin:10px 0;
+border-radius:14px;
+border:1px solid #dbe7f3;
+font-size:17px;
+cursor:pointer;
+text-align:left;
+}
 
-    .quiz-header {
-      text-align: left;
-      margin-bottom: 20px;
-    }
+.option:hover{
+background:#eef7ff;
+}
 
-    #question-counter {
-      font-size: 14px;
-      font-weight: bold;
-      color: #64748b;
-      margin-bottom: 12px;
-    }
+.option.selected{
+background:#ecfdf3;
+border:2px solid #58cc02;
+color:#14532d;
+}
 
-    #question {
-      font-size: 30px;
-      line-height: 1.3;
-      margin: 0 0 22px;
-      color: #0f172a;
-      text-align: left;
-    }
+.progress-container{
+width:100%;
+height:12px;
+background:#e5edf6;
+border-radius:999px;
+overflow:hidden;
+margin-top:20px;
+}
 
-    #options {
-      display: grid;
-      gap: 14px;
-      margin-top: 10px;
-    }
+#progress-bar{
+height:12px;
+background:#58cc02;
+width:0%;
+}
 
-    .option {
-      display: block;
-      width: 100%;
-      background: #f8fbff;
-      padding: 18px 18px;
-      border-radius: 18px;
-      cursor: pointer;
-      border: 1px solid #dbe7f3;
-      font-size: 17px;
-      text-align: left;
-      color: #1e293b;
-      transition: 0.2s ease;
-    }
+.review-card{
+border:1px solid #e5e7eb;
+border-radius:16px;
+padding:20px;
+margin-top:15px;
+}
 
-    .option:hover {
-      background: #eef7ff;
-      border-color: #9ed8ff;
-      transform: translateY(-1px);
-    }
+.correct{
+color:green;
+font-weight:bold;
+}
 
-    .option.selected {
-      background: #ecfdf3;
-      border: 2px solid #58cc02;
-      color: #14532d;
-      box-shadow: 0 8px 20px rgba(88, 204, 2, 0.10);
-    }
+.wrong{
+color:red;
+font-weight:bold;
+}
 
-    .bottom-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-
-    .progress-wrapper {
-      flex: 1;
-      min-width: 220px;
-    }
-
-    .progress-container {
-      width: 100%;
-      height: 12px;
-      background: #e5edf6;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    #progress-bar {
-      height: 12px;
-      background: linear-gradient(90deg, #58cc02 0%, #7be52a 100%);
-      width: 0%;
-      transition: width 0.25s ease;
-    }
-
-    .result-summary {
-      background: linear-gradient(180deg, #f8fff1 0%, #f3ffe7 100%);
-      border: 1px solid #d8f2c1;
-      border-radius: 20px;
-      padding: 22px;
-      margin-top: 24px;
-      margin-bottom: 24px;
-    }
-
-    .result-summary h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 32px;
-      color: #166534;
-    }
-
-    .score-line {
-      font-size: 22px;
-      font-weight: bold;
-      color: #1f2937;
-      margin: 10px 0;
-    }
-
-    .level-line {
-      font-size: 18px;
-      color: #166534;
-      font-weight: bold;
-      margin: 6px 0 0;
-    }
-
-    .review-title {
-      text-align: left;
-      font-size: 26px;
-      margin-top: 28px;
-      margin-bottom: 18px;
-      color: #0f172a;
-    }
-
-    .review-card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 16px;
-      text-align: left;
-      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
-    }
-
-    .review-card h4 {
-      margin: 0 0 10px;
-      color: #0f172a;
-      font-size: 20px;
-    }
-
-    .review-question {
-      color: #334155;
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-
-    .correct {
-      color: #15803d;
-      font-weight: bold;
-      background: #f0fdf4;
-      padding: 10px 12px;
-      border-radius: 12px;
-      margin-top: 8px;
-    }
-
-    .wrong {
-      color: #b91c1c;
-      font-weight: bold;
-      background: #fef2f2;
-      padding: 10px 12px;
-      border-radius: 12px;
-      margin-top: 8px;
-    }
-
-    .correct-answer {
-      color: #166534;
-      font-weight: bold;
-      background: #f0fdf4;
-      padding: 10px 12px;
-      border-radius: 12px;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 700px) {
-      body {
-        padding: 14px;
-      }
-
-      .container {
-        padding: 22px;
-        border-radius: 18px;
-      }
-
-      h1 {
-        font-size: 32px;
-      }
-
-      #question {
-        font-size: 24px;
-      }
-
-      .bottom-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      button {
-        width: 100%;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>English Level Test with Meganzinha</h1>
-    <p class="subtitle">Answer the questions and see your English level at the end.</p>
 
-    <p id="js-status" class="status ok">JavaScript loaded</p>
+<div class="container">
 
-    <div id="start-screen">
-      <input id="student-name" type="text" placeholder="Your name">
-      <input id="student-email" type="email" placeholder="Your email">
-      <button id="start-btn" type="button">Start Test</button>
-    </div>
+<h1>English Level Test with Meganzinha</h1>
+<p class="subtitle">Answer the questions and discover your English level</p>
 
-    <div id="quiz-screen">
-      <div class="quiz-header">
-        <div id="question-counter"></div>
-        <h2 id="question"></h2>
-      </div>
+<div id="start-screen">
 
-      <div id="options"></div>
+<input id="student-name" placeholder="Your name">
+<input id="student-email" placeholder="Your email">
 
-      <div class="bottom-row">
-        <div class="progress-wrapper">
-          <div class="progress-container">
-            <div id="progress-bar"></div>
-          </div>
-        </div>
+<button onclick="startQuiz()">Start Test</button>
 
-        <button id="next-btn" type="button" disabled>Next</button>
-      </div>
-    </div>
+</div>
 
-    <div id="final-screen">
-      <div class="result-summary">
-        <h2>Finished</h2>
-        <p class="score-line" id="final-score"></p>
-        <p class="level-line" id="final-level"></p>
-      </div>
+<div id="quiz-screen">
 
-      <h3 class="review-title">Full Review</h3>
-      <div id="review-list"></div>
+<h3 id="question-counter"></h3>
 
-      <button id="restart-btn" type="button">Restart</button>
-    </div>
-  </div>
+<h2 id="question"></h2>
 
-  <script>
-    var questions = [
-      {
-        question: "She __ to school every day.",
-        options: ["go", "goes", "going", "gone"],
-        answer: "goes"
-      },
-      {
-        question: "I __ coffee yesterday.",
-        options: ["drink", "drank", "drunk", "drinking"],
-        answer: "drank"
-      },
-      {
-        question: "They __ watching TV now.",
-        options: ["is", "are", "am", "be"],
-        answer: "are"
-      },
-      {
-        question: "He __ finished his homework.",
-        options: ["have", "has", "had", "having"],
-        answer: "has"
-      },
-      {
-        question: "We __ to the park tomorrow.",
-        options: ["go", "went", "will go", "gone"],
-        answer: "will go"
-      },
-      {
-        question: "If I __ more time, I would study more.",
-        options: ["have", "had", "will have", "am having"],
-        answer: "had"
-      },
-      {
-        question: "She has lived here __ 2019.",
-        options: ["for", "since", "from", "at"],
-        answer: "since"
-      },
-      {
-        question: "This is the book __ I told you about.",
-        options: ["who", "where", "which", "what"],
-        answer: "which"
-      },
-      {
-        question: "He is __ than his brother.",
-        options: ["tall", "taller", "more tall", "most tall"],
-        answer: "taller"
-      },
-      {
-        question: "They were tired, __ they kept working.",
-        options: ["but", "so", "because", "or"],
-        answer: "but"
-      }
-    ];
+<div id="options"></div>
 
-    var current = 0;
-    var score = 0;
-    var selectedAnswer = "";
-    var answersReview = [];
+<button id="next-btn" onclick="nextQuestion()" disabled>Next</button>
 
-    var startScreen = document.getElementById("start-screen");
-    var quizScreen = document.getElementById("quiz-screen");
-    var finalScreen = document.getElementById("final-screen");
+<div class="progress-container">
+<div id="progress-bar"></div>
+</div>
 
-    var nameInput = document.getElementById("student-name");
-    var emailInput = document.getElementById("student-email");
-    var startBtn = document.getElementById("start-btn");
-    var nextBtn = document.getElementById("next-btn");
-    var restartBtn = document.getElementById("restart-btn");
+</div>
 
-    var questionCounter = document.getElementById("question-counter");
-    var questionEl = document.getElementById("question");
-    var optionsEl = document.getElementById("options");
-    var progressBar = document.getElementById("progress-bar");
-    var finalScore = document.getElementById("final-score");
-    var finalLevel = document.getElementById("final-level");
-    var reviewList = document.getElementById("review-list");
+<div id="final-screen">
 
-    function calculateLevel(scoreValue) {
-      if (scoreValue <= 2) return "A1 Beginner";
-      if (scoreValue <= 4) return "A2 Elementary";
-      if (scoreValue <= 6) return "B1 Intermediate";
-      if (scoreValue <= 8) return "B2 Upper Intermediate";
-      return "C1 Advanced";
-    }
+<h2>Finished</h2>
 
-    function showQuestion() {
-      selectedAnswer = "";
-      nextBtn.disabled = true;
+<h3 id="final-score"></h3>
 
-      var q = questions[current];
-      questionCounter.textContent = "Question " + (current + 1) + " of " + questions.length;
-      questionEl.textContent = q.question;
-      optionsEl.innerHTML = "";
+<h3 id="final-level"></h3>
 
-      q.options.forEach(function(option) {
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "option";
-        btn.textContent = option;
+<h2>Review</h2>
 
-        btn.onclick = function() {
-          var all = document.querySelectorAll(".option");
-          all.forEach(function(item) {
-            item.classList.remove("selected");
-          });
+<div id="review-list"></div>
 
-          btn.classList.add("selected");
-          selectedAnswer = option;
-          nextBtn.disabled = false;
-        };
+<button onclick="location.reload()">Restart</button>
 
-        optionsEl.appendChild(btn);
-      });
+</div>
 
-      progressBar.style.width = ((current / questions.length) * 100) + "%";
-    }
+</div>
 
-    function startQuiz() {
-      var name = nameInput.value.trim();
-      var email = emailInput.value.trim();
+<script>
 
-      if (!name || !email) {
-        alert("Enter name and email");
-        return;
-      }
+var questions=[
 
-      startScreen.style.display = "none";
-      finalScreen.style.display = "none";
-      quizScreen.style.display = "block";
+{question:"She __ to school every day.",options:["go","goes","going","gone"],answer:"goes"},
+{question:"I __ coffee yesterday.",options:["drink","drank","drunk","drinking"],answer:"drank"},
+{question:"They __ watching TV now.",options:["is","are","am","be"],answer:"are"},
+{question:"He __ finished his homework.",options:["have","has","had","having"],answer:"has"},
+{question:"We __ to the park tomorrow.",options:["go","went","will go","gone"],answer:"will go"},
+{question:"If I __ more time, I would study more.",options:["have","had","will have","am having"],answer:"had"},
+{question:"She has lived here __ 2019.",options:["for","since","from","at"],answer:"since"},
+{question:"This is the book __ I told you about.",options:["who","where","which","what"],answer:"which"},
+{question:"He is __ than his brother.",options:["tall","taller","more tall","most tall"],answer:"taller"},
+{question:"They were tired, __ they kept working.",options:["but","so","because","or"],answer:"but"},
+{question:"She __ English for five years.",options:["studies","studied","has studied","study"],answer:"has studied"},
+{question:"I didn't see __ at the party.",options:["nobody","anybody","somebody","everybody"],answer:"anybody"},
+{question:"This movie is __ interesting.",options:["very","much","many","more"],answer:"very"},
+{question:"He asked me __ I was from.",options:["where","what","who","how"],answer:"where"},
+{question:"If it rains, we __ at home.",options:["stay","will stay","stayed","staying"],answer:"will stay"}
 
-      current = 0;
-      score = 0;
-      selectedAnswer = "";
-      answersReview = [];
-      progressBar.style.width = "0%";
+]
 
-      showQuestion();
-    }
+var current=0
+var score=0
+var selectedAnswer=""
+var answersReview=[]
 
-    function nextQuestion() {
-      if (!selectedAnswer) {
-        alert("Select an answer");
-        return;
-      }
+function calculateLevel(score){
 
-      var q = questions[current];
-      var isCorrect = selectedAnswer === q.answer;
+if(score<=5) return "A1 Beginner"
+if(score<=8) return "A2 Elementary"
+if(score<=11) return "B1 Intermediate"
+if(score<=13) return "B2 Upper Intermediate"
+return "C1 Advanced"
 
-      if (isCorrect) {
-        score++;
-      }
+}
 
-      answersReview.push({
-        questionNumber: current + 1,
-        question: q.question,
-        selected: selectedAnswer,
-        correct: q.answer,
-        isCorrect: isCorrect
-      });
+function startQuiz(){
 
-      current++;
+var name=document.getElementById("student-name").value
+var email=document.getElementById("student-email").value
 
-      if (current < questions.length) {
-        showQuestion();
-      } else {
-        finishTest();
-      }
-    }
+if(!name || !email){
+alert("Enter name and email")
+return
+}
 
-    function finishTest() {
-      quizScreen.style.display = "none";
-      finalScreen.style.display = "block";
+document.getElementById("start-screen").style.display="none"
+document.getElementById("quiz-screen").style.display="block"
 
-      finalScore.textContent = "Score: " + score + " / " + questions.length;
-      finalLevel.textContent = "Your level: " + calculateLevel(score);
+showQuestion()
 
-      reviewList.innerHTML = "";
+}
 
-      answersReview.forEach(function(item) {
-        var card = document.createElement("div");
-        card.className = "review-card";
+function showQuestion(){
 
-        var title = document.createElement("h4");
-        title.textContent = "Question " + item.questionNumber;
+selectedAnswer=""
+document.getElementById("next-btn").disabled=true
 
-        var questionText = document.createElement("p");
-        questionText.textContent = item.question;
-        questionText.className = "review-question";
+var q=questions[current]
 
-        var answerText = document.createElement("p");
-        answerText.textContent = "Your answer: " + item.selected;
-        answerText.className = item.isCorrect ? "correct" : "wrong";
+document.getElementById("question-counter").innerText="Question "+(current+1)+" of "+questions.length
 
-        var correctText = document.createElement("p");
-        correctText.textContent = "Correct answer: " + item.correct;
-        correctText.className = "correct-answer";
+document.getElementById("question").innerText=q.question
 
-        card.appendChild(title);
-        card.appendChild(questionText);
-        card.appendChild(answerText);
-        card.appendChild(correctText);
+var optionsDiv=document.getElementById("options")
 
-        reviewList.appendChild(card);
-      });
-    }
+optionsDiv.innerHTML=""
 
-    startBtn.onclick = startQuiz;
-    nextBtn.onclick = nextQuestion;
-    restartBtn.onclick = function() {
-      location.reload();
-    };
-  </script>
+q.options.forEach(function(option){
+
+var btn=document.createElement("button")
+
+btn.className="option"
+
+btn.innerText=option
+
+btn.onclick=function(){
+
+document.querySelectorAll(".option").forEach(function(o){
+o.classList.remove("selected")
+})
+
+btn.classList.add("selected")
+
+selectedAnswer=option
+
+document.getElementById("next-btn").disabled=false
+
+}
+
+optionsDiv.appendChild(btn)
+
+})
+
+document.getElementById("progress-bar").style.width=(current/questions.length*100)+"%"
+
+}
+
+function nextQuestion(){
+
+if(!selectedAnswer){
+alert("Select an answer")
+return
+}
+
+var q=questions[current]
+
+var correct=(selectedAnswer===q.answer)
+
+if(correct) score++
+
+answersReview.push({
+question:q.question,
+selected:selectedAnswer,
+correct:q.answer,
+isCorrect:correct
+})
+
+current++
+
+if(current<questions.length){
+showQuestion()
+}else{
+finishTest()
+}
+
+}
+
+function finishTest(){
+
+document.getElementById("quiz-screen").style.display="none"
+document.getElementById("final-screen").style.display="block"
+
+document.getElementById("final-score").innerText="Score: "+score+" / "+questions.length
+
+document.getElementById("final-level").innerText="Your level: "+calculateLevel(score)
+
+var review=document.getElementById("review-list")
+
+answersReview.forEach(function(item){
+
+var card=document.createElement("div")
+
+card.className="review-card"
+
+card.innerHTML=
+"<p>"+item.question+"</p>"+
+"<p class='"+(item.isCorrect?"correct":"wrong")+"'>Your answer: "+item.selected+"</p>"+
+"<p class='correct'>Correct answer: "+item.correct+"</p>"
+
+review.appendChild(card)
+
+})
+
+}
+
+</script>
+
 </body>
 </html>
