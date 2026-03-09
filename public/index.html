@@ -1,171 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Level Test with Meganzinha</title>
 
   <style>
-    body{
+    body {
       font-family: Arial, sans-serif;
-      background:#f6f7fb;
-      padding:20px;
-      text-align:center;
-      margin:0;
+      background: #f6f7fb;
+      padding: 20px;
+      text-align: center;
+      margin: 0;
     }
 
-    .container{
-      max-width:700px;
-      margin:auto;
-      background:white;
-      padding:30px;
-      border-radius:16px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.1);
-      margin-top:30px;
+    .container {
+      max-width: 700px;
+      margin: 30px auto 0;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
-    h1{
-      color:#333;
-      margin-bottom:20px;
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
     }
 
-    h2{
-      color:#222;
+    h2 {
+      color: #222;
     }
 
-    input{
-      width:90%;
-      padding:12px;
-      margin:10px;
-      border-radius:8px;
-      border:1px solid #ccc;
-      font-size:16px;
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
     }
 
-    .option{
-      display:block;
-      width:100%;
-      background:#eee;
-      padding:14px;
-      margin:10px 0;
-      border-radius:10px;
-      cursor:pointer;
-      transition:0.2s;
-      border:none;
-      font-size:16px;
-      text-align:left;
+    .option {
+      display: block;
+      width: 100%;
+      background: #eee;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      font-size: 16px;
+      text-align: left;
     }
 
-    .option:hover{
-      background:#ddd;
+    .option:hover {
+      background: #ddd;
     }
 
-    .option.selected{
-      background:#58cc02;
-      color:white;
+    .option.selected {
+      background: #58cc02;
+      color: white;
     }
 
-    button{
-      padding:12px 20px;
-      border:none;
-      border-radius:10px;
-      background:#58cc02;
-      color:white;
-      font-size:16px;
-      cursor:pointer;
-      margin-top:15px;
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #58cc02;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
     }
 
-    button:hover{
-      background:#46a302;
+    button:hover {
+      background: #46a302;
     }
 
-    button:disabled{
-      background:#bdbdbd;
-      cursor:not-allowed;
+    button:disabled {
+      background: #bdbdbd;
+      cursor: not-allowed;
     }
 
-    #question-counter{
-      font-size:14px;
-      color:#777;
-      margin-bottom:10px;
+    #question-counter {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
     }
 
-    .progress-container{
-      width:100%;
-      height:12px;
-      background:#e5e5e5;
-      border-radius:999px;
-      overflow:hidden;
-      margin-top:20px;
+    .progress-container {
+      width: 100%;
+      height: 12px;
+      background: #e5e5e5;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 20px;
     }
 
-    #progress-bar{
-      height:12px;
-      background:#58cc02;
-      width:0%;
-      transition:width 0.3s ease;
+    #progress-bar {
+      height: 12px;
+      background: #58cc02;
+      width: 0%;
+      transition: width 0.3s ease;
     }
 
-    .actions{
-      margin-top:20px;
+    .actions {
+      margin-top: 20px;
     }
 
-    .summary{
-      text-align:center;
-      margin-bottom:30px;
-      line-height:1.8;
-      color:#333;
+    .summary {
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.8;
+      color: #333;
     }
 
-    .level{
-      color:#58cc02;
-      font-weight:bold;
-      font-size:20px;
+    .level {
+      color: #58cc02;
+      font-weight: bold;
+      font-size: 20px;
     }
 
-    .review-card{
-      text-align:left;
-      background:#fafafa;
-      border:1px solid #e5e5e5;
-      border-radius:14px;
-      padding:20px;
-      margin-bottom:18px;
+    .review-card {
+      text-align: left;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
     }
 
-    .review-card h3{
-      margin-top:0;
-      color:#222;
+    .review-card h3 {
+      margin-top: 0;
+      color: #222;
     }
 
-    .correct{
-      color:#1c8f3a;
-      font-weight:bold;
+    .correct {
+      color: #1c8f3a;
+      font-weight: bold;
     }
 
-    .wrong{
-      color:#d11a2a;
-      font-weight:bold;
+    .wrong {
+      color: #d11a2a;
+      font-weight: bold;
     }
 
-    .correct-answer{
-      color:#1c8f3a;
-      font-weight:bold;
+    .correct-answer {
+      color: #1c8f3a;
+      font-weight: bold;
     }
 
-    .review-title{
-      margin-top:30px;
-      margin-bottom:20px;
-      color:#222;
+    .review-title {
+      margin-top: 30px;
+      margin-bottom: 20px;
+      color: #222;
     }
   </style>
 </head>
-
 <body>
-
   <div class="container">
-
     <h1>English Level Test with Meganzinha</h1>
 
     <div id="start-screen">
@@ -204,82 +199,82 @@
 
       <button onclick="location.reload()">Restart Test</button>
     </div>
-
   </div>
 
   <script>
-    let questions = []
-    let current = 0
-    let score = 0
+    let questions = [];
+    let current = 0;
+    let score = 0;
 
-    let studentName = ""
-    let studentEmail = ""
+    let studentName = "";
+    let studentEmail = "";
 
-    let selectedAnswer = null
-    let answersReview = []
+    let selectedAnswer = null;
+    let answersReview = [];
 
-    async function startQuiz(){
-      studentName = document.getElementById("student-name").value.trim()
-      studentEmail = document.getElementById("student-email").value.trim()
+    async function startQuiz() {
+      studentName = document.getElementById("student-name").value.trim();
+      studentEmail = document.getElementById("student-email").value.trim();
 
-      if(!studentName || !studentEmail){
-        alert("Enter name and email")
-        return
+      if (!studentName || !studentEmail) {
+        alert("Enter name and email");
+        return;
       }
 
-      await loadQuestions()
+      await loadQuestions();
 
-      document.getElementById("start-screen").style.display = "none"
-      document.getElementById("quiz-screen").style.display = "block"
+      document.getElementById("start-screen").style.display = "none";
+      document.getElementById("quiz-screen").style.display = "block";
 
-      showQuestion()
+      showQuestion();
     }
 
-    async function loadQuestions(){
-      const res = await fetch("/questions")
-      questions = await res.json()
+    async function loadQuestions() {
+      const res = await fetch("/questions");
+      questions = await res.json();
     }
 
-    function showQuestion(){
-      selectedAnswer = null
+    function showQuestion() {
+      selectedAnswer = null;
 
-      const q = questions[current]
+      const q = questions[current];
 
-      document.getElementById("question-counter").innerText = Question ${current + 1} of ${questions.length}
-      document.getElementById("question").innerText = q.question
+      document.getElementById("question-counter").innerText =
+        Question ${current + 1} of ${questions.length};
+      document.getElementById("question").innerText = q.question;
 
-      const optionsDiv = document.getElementById("options")
-      optionsDiv.innerHTML = ""
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
 
       q.options.forEach(option => {
-        const btn = document.createElement("button")
-        btn.className = "option"
-        btn.innerText = option
-        btn.type = "button"
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.innerText = option;
+        btn.type = "button";
 
         btn.onclick = () => {
           document.querySelectorAll(".option").forEach(item => {
-            item.classList.remove("selected")
-          })
+            item.classList.remove("selected");
+          });
 
-          btn.classList.add("selected")
-          selectedAnswer = option
-          document.getElementById("next-btn").disabled = false
-        }
+          btn.classList.add("selected");
+          selectedAnswer = option;
+          document.getElementById("next-btn").disabled = false;
+        };
 
-        optionsDiv.appendChild(btn)
-      })
+        optionsDiv.appendChild(btn);
+      });
 
-      document.getElementById("next-btn").disabled = true
+      document.getElementById("next-btn").disabled = true;
     }
 
-    async function nextQuestion(){
-      if(!selectedAnswer){
-        alert("Select an answer first")
-        return
+    async function nextQuestion() {
+      if (!selectedAnswer) {
+        alert("Select an answer first");
+        return;
       }
 
-      const q = questions[current]
+      const q = questions[current];
 
       const res = await fetch("/questions/answer", {
         method: "POST",
@@ -290,14 +285,13 @@
           id: q.id,
           answer: selectedAnswer
         })
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
+      const isCorrect = data.correct;
 
-      const isCorrect = data.correct
-
-      if(isCorrect){
-        score++
+      if (isCorrect) {
+        score++;
       }
 
       answersReview.push({
@@ -306,44 +300,44 @@
         selectedAnswer: selectedAnswer,
         correctAnswer: data.correctAnswer,
         isCorrect: isCorrect
-      })
+      });
 
-      current++
+      current++;
+      document.getElementById("progress-bar").style.width =
+        (current / questions.length * 100) + "%";
 
-      document.getElementById("progress-bar").style.width = (current / questions.length * 100) + "%"
-
-      if(current < questions.length){
-        showQuestion()
+      if (current < questions.length) {
+        showQuestion();
       } else {
-        finishTest()
+        finishTest();
       }
     }
 
-    function calculateLevel(score){
-      if(score <= 4) return "A1 Beginner"
-      if(score <= 8) return "A2 Elementary"
-      if(score <= 12) return "B1 Intermediate"
-      if(score <= 16) return "B2 Upper Intermediate"
-      return "C1 Advanced"
+    function calculateLevel(score) {
+      if (score <= 4) return "A1 Beginner";
+      if (score <= 8) return "A2 Elementary";
+      if (score <= 12) return "B1 Intermediate";
+      if (score <= 16) return "B2 Upper Intermediate";
+      return "C1 Advanced";
     }
 
-    function finishTest(){
-      const level = calculateLevel(score)
+    function finishTest() {
+      const level = calculateLevel(score);
 
-      document.getElementById("quiz-screen").style.display = "none"
-      document.getElementById("final-screen").style.display = "block"
+      document.getElementById("quiz-screen").style.display = "none";
+      document.getElementById("final-screen").style.display = "block";
 
-      document.getElementById("final-name").innerText = studentName
-      document.getElementById("final-email").innerText = studentEmail
-      document.getElementById("final-score").innerText = ${score} / ${questions.length}
-      document.getElementById("final-level").innerText = level
+      document.getElementById("final-name").innerText = studentName;
+      document.getElementById("final-email").innerText = studentEmail;
+      document.getElementById("final-score").innerText = ${score} / ${questions.length};
+      document.getElementById("final-level").innerText = level;
 
-      const reviewList = document.getElementById("review-list")
-      reviewList.innerHTML = ""
+      const reviewList = document.getElementById("review-list");
+      reviewList.innerHTML = "";
 
       answersReview.forEach(item => {
-        const card = document.createElement("div")
-        card.className = "review-card"
+        const card = document.createElement("div");
+        card.className = "review-card";
 
         card.innerHTML = `
           <h3>Question ${item.questionNumber}</h3>
@@ -354,24 +348,23 @@
           <p class="correct-answer">
             <strong>Correct answer:</strong> ${item.correctAnswer}
           </p>
-        `
+        `;
 
-        reviewList.appendChild(card)
-      })
+        reviewList.appendChild(card);
+      });
 
       const params = new URLSearchParams({
         name: studentName,
         email: studentEmail,
         score: score,
         level: level
-      })
+      });
 
       fetch("https://script.google.com/macros/s/AKfycbz-wqwXuZ61kH9EX_OPZ5RLCXdiBciccB_OqPMhIGW0amlh1LDf1d-70jhK58njN4dG/exec?" + params.toString(), {
         method: "GET",
         mode: "no-cors"
-      })
+      });
     }
   </script>
-
 </body>
 </html>
