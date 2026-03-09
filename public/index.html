@@ -590,29 +590,29 @@
       <div class="top-nav">
         <span>Meganzinha English Assessment</span>
         <span>•</span>
-        <span>15 Questions</span>
+        <span>50 Question Bank</span>
         <span>•</span>
-        <span>Instant Review</span>
+        <span>15 Random Questions</span>
         <span>•</span>
-        <span>Premium Mobile Friendly</span>
+        <span>Basic to Advanced</span>
       </div>
 
       <div class="hero-badge">Advanced English Placement Test</div>
       <h1>English Level Test with Meganzinha</h1>
-      <p>Pinpoint your English level with a sleek, professional placement test that works beautifully on both desktop and mobile.</p>
+      <p>Answer a balanced mix of basic, intermediate, and advanced questions to estimate your English level with more accuracy.</p>
     </div>
 
     <div class="main-grid">
       <div class="glass-card">
         <div class="panel-top">
           <div class="panel-title">Meganzinha English Assessment</div>
-          <div class="panel-meta">15 Questions</div>
+          <div class="panel-meta">15 Random Questions</div>
         </div>
 
         <div class="panel-body">
           <div id="start-screen">
             <h2 class="section-title">Begin your test</h2>
-            <p class="section-subtitle">Start with 15 carefully selected questions designed to estimate English level and give a detailed review at the end.</p>
+            <p class="section-subtitle">This version uses a larger bank of 50 questions and randomly selects 15 balanced questions from basic to advanced level.</p>
 
             <div class="form-grid">
               <div class="input-wrap">
@@ -661,7 +661,7 @@
             </div>
 
             <h3 class="review-title">Detailed Review</h3>
-            <p class="review-subtitle">Check all your answers, compare them with the correct answers, and clearly see what to improve next.</p>
+            <p class="review-subtitle">Review each selected question, compare your answer to the correct answer, and see where your English is stronger or weaker.</p>
 
             <div id="review-list"></div>
 
@@ -674,59 +674,59 @@
 
       <div class="feature-stack">
         <div class="feature-card">
-          <h3>Why take this test?</h3>
+          <h3>What changed in this version?</h3>
 
           <div class="feature-list">
             <div class="feature-item">
-              <div class="feature-icon">📝</div>
+              <div class="feature-icon">🎯</div>
               <div class="feature-text">
-                <strong>15 Expert Questions</strong>
-                <span>Structured questions to assess grammar, reading intuition, and placement-test readiness.</span>
+                <strong>Balanced Question Selection</strong>
+                <span>The app randomly selects 5 basic, 5 intermediate, and 5 advanced questions.</span>
               </div>
             </div>
 
             <div class="feature-item">
-              <div class="feature-icon">📊</div>
+              <div class="feature-icon">🧠</div>
               <div class="feature-text">
-                <strong>Instant Level Analysis</strong>
-                <span>Evaluate performance immediately after the test and estimate the student’s English level.</span>
+                <strong>More Accurate Placement</strong>
+                <span>A larger question bank gives a more realistic estimate of the student’s level.</span>
               </div>
             </div>
 
             <div class="feature-item">
-              <div class="feature-icon">✅</div>
+              <div class="feature-icon">🔄</div>
               <div class="feature-text">
-                <strong>In-Depth Score Review</strong>
-                <span>Review every question, catch mistakes, and compare selected answers with the correct answers.</span>
+                <strong>Different Test Every Time</strong>
+                <span>Each new attempt can show a different combination of questions.</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="mini-card">
-          <h3>What makes it feel premium?</h3>
+          <h3>Why this is better</h3>
 
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Elegant first impression</strong>
-              <span>Ideal for students arriving from Instagram, WhatsApp, or ads.</span>
+              <strong>Less predictable</strong>
+              <span>Students won’t always get the exact same fixed list of questions.</span>
             </div>
           </div>
 
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Mobile-friendly design</strong>
-              <span>The layout adapts well to phones, with comfortable spacing and readable cards.</span>
+              <strong>More professional</strong>
+              <span>This feels closer to a real placement test used by a school or tutor.</span>
             </div>
           </div>
 
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Ready to evolve later</strong>
-              <span>You can add dashboard, Google Sheets, timer, or booking flow later without rebuilding everything.</span>
+              <strong>Easy to grow later</strong>
+              <span>You can expand this bank to 100+ questions without changing the visual structure.</span>
             </div>
           </div>
         </div>
@@ -735,33 +735,95 @@
   </div>
 
   <script>
-    var questions = [
-      {question:"She __ to school every day.",options:["go","goes","going","gone"],answer:"goes"},
-      {question:"I __ coffee yesterday.",options:["drink","drank","drunk","drinking"],answer:"drank"},
-      {question:"They __ watching TV now.",options:["is","are","am","be"],answer:"are"},
-      {question:"He __ finished his homework.",options:["have","has","had","having"],answer:"has"},
-      {question:"We __ to the park tomorrow.",options:["go","went","will go","gone"],answer:"will go"},
-      {question:"If I __ more time, I would study more.",options:["have","had","will have","am having"],answer:"had"},
-      {question:"She has lived here __ 2019.",options:["for","since","from","at"],answer:"since"},
-      {question:"This is the book __ I told you about.",options:["who","where","which","what"],answer:"which"},
-      {question:"He is __ than his brother.",options:["tall","taller","more tall","most tall"],answer:"taller"},
-      {question:"They were tired, __ they kept working.",options:["but","so","because","or"],answer:"but"},
-      {question:"She __ English for five years.",options:["studies","studied","has studied","study"],answer:"has studied"},
-      {question:"I didn't see __ at the party.",options:["nobody","anybody","somebody","everybody"],answer:"anybody"},
-      {question:"This movie is __ interesting.",options:["very","much","many","more"],answer:"very"},
-      {question:"He asked me __ I was from.",options:["where","what","who","how"],answer:"where"},
-      {question:"If it rains, we __ at home.",options:["stay","will stay","stayed","staying"],answer:"will stay"}
-    ];
+    function shuffleArray(array) {
+      var copy = array.slice();
+      for (var i = copy.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
+      }
+      return copy;
+    }
 
+    var questionBank = {
+      basic: [
+        {question:"She _ to school every day.",options:["go","goes","going","gone"],answer:"goes"},
+        {question:"I _ coffee yesterday.",options:["drink","drank","drunk","drinking"],answer:"drank"},
+        {question:"They _ watching TV now.",options:["is","are","am","be"],answer:"are"},
+        {question:"He _ finished his homework.",options:["have","has","had","having"],answer:"has"},
+        {question:"We _ to the park tomorrow.",options:["go","went","will go","gone"],answer:"will go"},
+        {question:"My mother _ breakfast every day.",options:["make","makes","making","made"],answer:"makes"},
+        {question:"I _ from Brazil.",options:["is","am","are","be"],answer:"am"},
+        {question:"There _ two books on the table.",options:["is","are","am","be"],answer:"are"},
+        {question:"She _ like pizza.",options:["don't","doesn't","isn't","not"],answer:"doesn't"},
+        {question:"We _ TV last night.",options:["watch","watched","watching","watches"],answer:"watched"},
+        {question:"This movie is _ interesting.",options:["very","much","many","more"],answer:"very"},
+        {question:"He asked me _ I was from.",options:["where","what","who","how"],answer:"where"},
+        {question:"If it rains, we _ at home.",options:["stay","will stay","stayed","staying"],answer:"will stay"},
+        {question:"I didn't see _ at the party.",options:["nobody","anybody","somebody","everybody"],answer:"anybody"},
+        {question:"She has lived here _ 2019.",options:["for","since","from","at"],answer:"since"},
+        {question:"He is _ than his brother.",options:["tall","taller","more tall","most tall"],answer:"taller"},
+        {question:"This is the book _ I told you about.",options:["who","where","which","what"],answer:"which"}
+      ],
+
+      intermediate: [
+        {question:"They were tired, _ they kept working.",options:["but","so","because","or"],answer:"but"},
+        {question:"If I _ more time, I would study more.",options:["have","had","will have","am having"],answer:"had"},
+        {question:"She _ English for five years.",options:["studies","studied","has studied","study"],answer:"has studied"},
+        {question:"He _ working here since 2020.",options:["is","has been","was","be"],answer:"has been"},
+        {question:"By next year I _ graduated.",options:["will","will have","am","have"],answer:"will have"},
+        {question:"I wish I _ speak Japanese.",options:["can","could","will","may"],answer:"could"},
+        {question:"He told me he _ busy.",options:["was","is","be","being"],answer:"was"},
+        {question:"She said she _ come later.",options:["will","would","can","shall"],answer:"would"},
+        {question:"The meeting was cancelled _ the storm.",options:["because","because of","due","since"],answer:"because of"},
+        {question:"She is interested _ learning languages.",options:["in","on","at","for"],answer:"in"},
+        {question:"This test consists _ 15 questions.",options:["of","in","from","with"],answer:"of"},
+        {question:"He apologized _ being late.",options:["for","about","on","to"],answer:"for"},
+        {question:"They arrived _ the airport early.",options:["to","in","at","on"],answer:"at"},
+        {question:"I am looking forward _ you.",options:["see","to see","seeing","saw"],answer:"seeing"},
+        {question:"She insisted _ paying.",options:["in","on","to","for"],answer:"on"},
+        {question:"He is capable _ solving it.",options:["of","in","for","to"],answer:"of"},
+        {question:"This depends _ the weather.",options:["of","on","to","with"],answer:"on"}
+      ],
+
+      advanced: [
+        {question:"Had I known, I _ earlier.",options:["come","came","would come","would have come"],answer:"would have come"},
+        {question:"He denied _ the money.",options:["steal","stealing","stole","to steal"],answer:"stealing"},
+        {question:"She suggested _ earlier.",options:["leave","leaving","left","to leave"],answer:"leaving"},
+        {question:"Not only he _ late but also tired.",options:["was","were","be","being"],answer:"was"},
+        {question:"Rarely _ such talent.",options:["I saw","have I seen","I see","I seen"],answer:"have I seen"},
+        {question:"The book was _ written.",options:["good","well","better","best"],answer:"well"},
+        {question:"She speaks English _.",options:["fluent","fluently","more fluent","most fluent"],answer:"fluently"},
+        {question:"He drives _ than me.",options:["careful","carefully","more carefully","most carefully"],answer:"more carefully"},
+        {question:"This is _ movie I’ve seen.",options:["good","better","the best","best"],answer:"the best"},
+        {question:"She solved the problem _.",options:["quick","quickly","quicker","quickest"],answer:"quickly"},
+        {question:"The test was _ difficult.",options:["surprising","surprisingly","surprise","surprised"],answer:"surprisingly"},
+        {question:"He answered _.",options:["correct","correctly","more correct","correctest"],answer:"correctly"},
+        {question:"The exam was _ easy.",options:["surprising","surprisingly","surprise","surprised"],answer:"surprisingly"},
+        {question:"She reacted _.",options:["calm","calmly","calmer","calmest"],answer:"calmly"},
+        {question:"He spoke _ during the meeting.",options:["confident","confidently","confidence","confidentest"],answer:"confidently"},
+        {question:"Scarcely _ when the phone rang.",options:["had I sat down","I had sat down","did I sit down","I sat down"],answer:"had I sat down"}
+      ]
+    };
+
+    function getRandomQuestions() {
+      var basicQuestions = shuffleArray(questionBank.basic).slice(0, 5);
+      var intermediateQuestions = shuffleArray(questionBank.intermediate).slice(0, 5);
+      var advancedQuestions = shuffleArray(questionBank.advanced).slice(0, 5);
+      return shuffleArray(basicQuestions.concat(intermediateQuestions, advancedQuestions));
+    }
+
+    var questions = [];
     var current = 0;
     var score = 0;
     var selectedAnswer = "";
     var answersReview = [];
 
     function calculateLevel(scoreValue) {
-      if (scoreValue <= 5) return "A1 Beginner";
-      if (scoreValue <= 8) return "A2 Elementary";
-      if (scoreValue <= 11) return "B1 Intermediate";
+      if (scoreValue <= 4) return "A1 Beginner";
+      if (scoreValue <= 7) return "A2 Elementary";
+      if (scoreValue <= 10) return "B1 Intermediate";
       if (scoreValue <= 13) return "B2 Upper Intermediate";
       return "C1 Advanced";
     }
@@ -775,6 +837,7 @@
         return;
       }
 
+      questions = getRandomQuestions();
       current = 0;
       score = 0;
       selectedAnswer = "";
