@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>English Level Test with Meganzinha</title>
-
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f6f7fb;
+      margin: 0;
       padding: 20px;
       text-align: center;
-      margin: 0;
     }
 
     .container {
@@ -20,7 +19,7 @@
       background: white;
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
     h1 {
@@ -31,10 +30,37 @@
     input {
       width: 90%;
       padding: 12px;
-      margin: 10px;
+      margin: 10px 0;
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 16px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #58cc02;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .status {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .ok {
+      color: green;
+    }
+
+    .error {
+      color: red;
     }
 
     .option {
@@ -50,64 +76,19 @@
       text-align: left;
     }
 
-    .option:hover {
-      background: #ddd;
-    }
-
     .option.selected {
       background: #58cc02;
       color: white;
     }
 
-    button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 10px;
-      background: #58cc02;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 15px;
+    #quiz-screen,
+    #final-screen {
+      display: none;
     }
 
-    button:disabled {
+    #next-btn:disabled {
       background: #ccc;
       cursor: not-allowed;
-    }
-
-    .progress-container {
-      width: 100%;
-      height: 12px;
-      background: #e5e5e5;
-      border-radius: 999px;
-      overflow: hidden;
-      margin-top: 20px;
-    }
-
-    #progress-bar {
-      height: 12px;
-      background: #58cc02;
-      width: 0%;
-      transition: width 0.2s ease;
-    }
-
-    .review-card {
-      background: #fafafa;
-      border: 1px solid #e5e5e5;
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 18px;
-      text-align: left;
-    }
-
-    .correct {
-      color: green;
-      font-weight: bold;
-    }
-
-    .wrong {
-      color: red;
-      font-weight: bold;
     }
   </style>
 </head>
@@ -115,34 +96,32 @@
   <div class="container">
     <h1>English Level Test with Meganzinha</h1>
 
+    <p id="js-status" class="status error">JavaScript not loaded yet</p>
+
     <div id="start-screen">
-      <input id="student-name" type="text" placeholder="Your name">
-      <input id="student-email" type="email" placeholder="Your email">
-      <br>
+      <input id="student-name" type="text" placeholder="Your name" />
+      <input id="student-email" type="email" placeholder="Your email" />
       <button id="start-btn" type="button">Start Test</button>
     </div>
 
-    <div id="quiz-screen" style="display:none;">
+    <div id="quiz-screen">
       <h3 id="question-counter"></h3>
       <h2 id="question"></h2>
       <div id="options"></div>
       <button id="next-btn" type="button" disabled>Next</button>
-
-      <div class="progress-container">
-        <div id="progress-bar"></div>
-      </div>
     </div>
 
-    <div id="final-screen" style="display:none;">
-      <h2>Your Result</h2>
+    <div id="final-screen">
+      <h2>Finished</h2>
       <p id="final-score"></p>
-      <h3>Review</h3>
-      <div id="review-list"></div>
       <button id="restart-btn" type="button">Restart</button>
     </div>
   </div>
 
   <script>
+    document.getElementById("js-status").textContent = "JavaScript loaded";
+    document.getElementById("js-status").className = "status ok";
+
     var questions = [
       {
         question: "She __ to school every day.",
@@ -153,28 +132,12 @@
         question: "I __ coffee yesterday.",
         options: ["drink", "drank", "drunk", "drinking"],
         answer: "drank"
-      },
-      {
-        question: "They __ watching TV now.",
-        options: ["is", "are", "am", "be"],
-        answer: "are"
-      },
-      {
-        question: "He __ finished his homework.",
-        options: ["have", "has", "had", "having"],
-        answer: "has"
-      },
-      {
-        question: "We __ to the park tomorrow.",
-        options: ["go", "went", "will go", "gone"],
-        answer: "will go"
       }
     ];
 
     var current = 0;
     var score = 0;
     var selectedAnswer = "";
-    var answersReview = [];
 
     var startScreen = document.getElementById("start-screen");
     var quizScreen = document.getElementById("quiz-screen");
@@ -182,7 +145,6 @@
 
     var nameInput = document.getElementById("student-name");
     var emailInput = document.getElementById("student-email");
-
     var startBtn = document.getElementById("start-btn");
     var nextBtn = document.getElementById("next-btn");
     var restartBtn = document.getElementById("restart-btn");
@@ -190,31 +152,7 @@
     var questionCounter = document.getElementById("question-counter");
     var questionEl = document.getElementById("question");
     var optionsEl = document.getElementById("options");
-    var progressBar = document.getElementById("progress-bar");
     var finalScore = document.getElementById("final-score");
-    var reviewList = document.getElementById("review-list");
-
-    function startQuiz() {
-      var name = nameInput.value.trim();
-      var email = emailInput.value.trim();
-
-      if (!name || !email) {
-        alert("Enter name and email");
-        return;
-      }
-
-      current = 0;
-      score = 0;
-      selectedAnswer = "";
-      answersReview = [];
-
-      startScreen.style.display = "none";
-      quizScreen.style.display = "block";
-      finalScreen.style.display = "none";
-      progressBar.style.width = "0%";
-
-      showQuestion();
-    }
 
     function showQuestion() {
       selectedAnswer = "";
@@ -231,19 +169,37 @@
         btn.className = "option";
         btn.textContent = option;
 
-        btn.addEventListener("click", function() {
-          var allOptions = document.querySelectorAll(".option");
-          allOptions.forEach(function(item) {
+        btn.onclick = function() {
+          var all = document.querySelectorAll(".option");
+          all.forEach(function(item) {
             item.classList.remove("selected");
           });
 
           btn.classList.add("selected");
           selectedAnswer = option;
           nextBtn.disabled = false;
-        });
+        };
 
         optionsEl.appendChild(btn);
       });
+    }
+
+    function startQuiz() {
+      var name = nameInput.value.trim();
+      var email = emailInput.value.trim();
+
+      if (!name || !email) {
+        alert("Enter name and email");
+        return;
+      }
+
+      startScreen.style.display = "none";
+      finalScreen.style.display = "none";
+      quizScreen.style.display = "block";
+
+      current = 0;
+      score = 0;
+      showQuestion();
     }
 
     function nextQuestion() {
@@ -252,70 +208,26 @@
         return;
       }
 
-      var q = questions[current];
-      var isCorrect = selectedAnswer === q.answer;
-
-      if (isCorrect) {
-        score = score + 1;
+      if (selectedAnswer === questions[current].answer) {
+        score++;
       }
 
-      answersReview.push({
-        questionNumber: current + 1,
-        question: q.question,
-        selected: selectedAnswer,
-        correct: q.answer,
-        isCorrect: isCorrect
-      });
-
-      current = current + 1;
-      progressBar.style.width = ((current / questions.length) * 100) + "%";
+      current++;
 
       if (current < questions.length) {
         showQuestion();
       } else {
-        finishTest();
+        quizScreen.style.display = "none";
+        finalScreen.style.display = "block";
+        finalScore.textContent = "Score: " + score + " / " + questions.length;
       }
     }
 
-    function finishTest() {
-      quizScreen.style.display = "none";
-      finalScreen.style.display = "block";
-
-      finalScore.textContent = "Score: " + score + " / " + questions.length;
-      reviewList.innerHTML = "";
-
-      answersReview.forEach(function(item) {
-        var card = document.createElement("div");
-        card.className = "review-card";
-
-        var title = document.createElement("h4");
-        title.textContent = "Question " + item.questionNumber;
-
-        var questionText = document.createElement("p");
-        questionText.textContent = item.question;
-
-        var answerText = document.createElement("p");
-        answerText.textContent = "Your answer: " + item.selected;
-        answerText.className = item.isCorrect ? "correct" : "wrong";
-
-        var correctText = document.createElement("p");
-        correctText.textContent = "Correct answer: " + item.correct;
-        correctText.className = "correct";
-
-        card.appendChild(title);
-        card.appendChild(questionText);
-        card.appendChild(answerText);
-        card.appendChild(correctText);
-
-        reviewList.appendChild(card);
-      });
-    }
-
-    startBtn.addEventListener("click", startQuiz);
-    nextBtn.addEventListener("click", nextQuestion);
-    restartBtn.addEventListener("click", function() {
+    startBtn.onclick = startQuiz;
+    nextBtn.onclick = nextQuestion;
+    restartBtn.onclick = function() {
       location.reload();
-    });
+    };
   </script>
 </body>
 </html>
