@@ -136,7 +136,7 @@
       color: #334155;
     }
 
-    input, textarea {
+    input {
       width: 100%;
       padding: 16px;
       border-radius: 16px;
@@ -150,12 +150,7 @@
       font-family: Arial, sans-serif;
     }
 
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    input:focus, textarea:focus {
+    input:focus {
       border-color: #58cc02;
       box-shadow: 0 0 0 4px rgba(88, 204, 2, 0.12);
     }
@@ -812,11 +807,11 @@
       <div class="top-nav">
         <span>English Placement Test</span>
         <span>•</span>
-        <span>Grammar + Listening + Speaking</span>
+        <span>15 Grammar Questions</span>
         <span>•</span>
-        <span>Detailed Review</span>
+        <span>3 Random Listening Questions</span>
         <span>•</span>
-        <span>PDF Report Ready</span>
+        <span>10 Speaking Prompts</span>
       </div>
 
       <div class="hero-badge">Avaliação profissional de inglês</div>
@@ -828,13 +823,13 @@
       <div class="glass-card">
         <div class="panel-top">
           <div class="panel-title">English Assessment</div>
-          <div class="panel-meta">3 Sections</div>
+          <div class="panel-meta">Grammar + Listening + Speaking</div>
         </div>
 
         <div class="panel-body">
           <div id="start-screen">
             <h2 class="section-title">Comece seu teste</h2>
-            <p class="section-subtitle">Este teste possui 3 etapas: gramática, listening e speaking. No final, o aluno recebe um relatório com pontuação por seção e nível estimado.</p>
+            <p class="section-subtitle">Este teste possui 15 questões de gramática, 3 questões aleatórias de listening e 1 frase aleatória de speaking.</p>
 
             <div class="form-grid">
               <div class="input-wrap">
@@ -882,8 +877,8 @@
             </div>
 
             <div class="audio-box">
-              <p class="audio-help">Clique no botão abaixo para ouvir o áudio. Você pode reproduzir cada áudio até 2 vezes.</p>
-              <button id="play-audio-btn" class="ghost-btn" onclick="playCurrentAudio()">▶ Ouvir áudio</button>
+              <p class="audio-help">Clique no botão abaixo para ouvir o áudio. O sistema tenta usar uma voz feminina em inglês mais natural do seu navegador. Você pode reproduzir cada áudio até 2 vezes.</p>
+              <button id="play-audio-btn" class="ghost-btn" onclick="playCurrentAudio()">▶️ Ouvir áudio</button>
               <p id="audio-plays-left" class="audio-help" style="margin-top: 12px;">Reproduções restantes: 2</p>
             </div>
 
@@ -1006,7 +1001,7 @@
               <div class="feature-icon">🎧</div>
               <div class="feature-text">
                 <strong>Listening</strong>
-                <span>Áudios curtos com perguntas de compreensão para medir entendimento real.</span>
+                <span>3 questões aleatórias escolhidas a partir de um banco maior de áudios.</span>
               </div>
             </div>
 
@@ -1014,7 +1009,7 @@
               <div class="feature-icon">🎤</div>
               <div class="feature-text">
                 <strong>Speaking</strong>
-                <span>O aluno grava a própria voz e o sistema fica pronto para correção automática de pronúncia.</span>
+                <span>1 frase aleatória entre 10 textos diferentes para não ficar repetitivo.</span>
               </div>
             </div>
           </div>
@@ -1034,8 +1029,8 @@
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Mais profissional</strong>
-              <span>O aluno percebe que está entrando em um sistema sério de nivelamento.</span>
+              <strong>Menos repetitivo</strong>
+              <span>O speaking agora sorteia frases diferentes para os alunos.</span>
             </div>
           </div>
 
@@ -1063,6 +1058,10 @@
         copy[j] = temp;
       }
       return copy;
+    }
+
+    function getRandomItems(array, count) {
+      return shuffleArray(array).slice(0, count);
     }
 
     var questionBank = {
@@ -1121,30 +1120,29 @@
     };
 
     var listeningBank = [
-      {
-        audioText: "Anna works in a hospital. She usually starts work at seven in the morning.",
-        question: "Where does Anna work?",
-        options: ["At a school", "At a hospital", "At a bank", "At a restaurant"],
-        answer: "At a hospital"
-      },
-      {
-        audioText: "David lives in Seattle, but every weekend he visits his parents in Tacoma.",
-        question: "Where does David live?",
-        options: ["In Tacoma", "In Seattle", "In Portland", "In New York"],
-        answer: "In Seattle"
-      },
-      {
-        audioText: "Tomorrow the class will begin at nine thirty, and students should bring a notebook and a pen.",
-        question: "What should students bring?",
-        options: ["A notebook and a pen", "A laptop and headphones", "Only a book", "Food and water"],
-        answer: "A notebook and a pen"
-      }
+      { audioText:"Anna works in a hospital. She usually starts work at seven in the morning.", question:"Where does Anna work?", options:["At a school","At a hospital","At a bank","At a restaurant"], answer:"At a hospital" },
+      { audioText:"David lives in Seattle, but every weekend he visits his parents in Tacoma.", question:"Where does David live?", options:["In Tacoma","In Seattle","In Portland","In New York"], answer:"In Seattle" },
+      { audioText:"Tomorrow the class will begin at nine thirty, and students should bring a notebook and a pen.", question:"What should students bring?", options:["A notebook and a pen","A laptop and headphones","Only a book","Food and water"], answer:"A notebook and a pen" },
+      { audioText:"Maria missed the bus this morning, so she arrived at work fifteen minutes late.", question:"Why was Maria late?", options:["She woke up late","She missed the bus","Her car broke down","She had a meeting"], answer:"She missed the bus" },
+      { audioText:"The restaurant closes at ten o clock on weekdays but stays open until midnight on Saturdays.", question:"When does the restaurant stay open until midnight?", options:["On Fridays","On Saturdays","On Sundays","On Mondays"], answer:"On Saturdays" },
+      { audioText:"James bought a new laptop because his old computer was too slow for work.", question:"Why did James buy a new laptop?", options:["His old computer was too slow","He lost his old one","He needed it for games","It was on sale"], answer:"His old computer was too slow" },
+      { audioText:"At the station, passengers were asked to wait on platform three for the next train to Boston.", question:"Where should passengers wait?", options:["Platform one","Platform two","Platform three","Platform four"], answer:"Platform three" },
+      { audioText:"Sarah studies English every evening for one hour before dinner.", question:"When does Sarah study English?", options:["After dinner","Before dinner","In the morning","At lunchtime"], answer:"Before dinner" },
+      { audioText:"The meeting was moved from Tuesday to Thursday because the manager was traveling.", question:"Why was the meeting moved?", options:["The office was closed","The manager was traveling","The room was busy","The team was sick"], answer:"The manager was traveling" },
+      { audioText:"Peter wants to improve his pronunciation, so he listens to podcasts and repeats sentences aloud.", question:"What does Peter do to improve pronunciation?", options:["He reads novels","He watches silent movies","He listens to podcasts and repeats sentences","He only studies grammar"], answer:"He listens to podcasts and repeats sentences" }
     ];
 
     var speakingPrompts = [
       "Learning a new language takes patience, practice, and confidence.",
       "The more you speak English every day, the more natural it becomes.",
-      "Consistent practice helps students improve fluency, pronunciation, and vocabulary."
+      "Consistent practice helps students improve fluency, pronunciation, and vocabulary.",
+      "Reading short articles in English can help you learn new words and expressions.",
+      "Listening to native speakers is one of the best ways to improve comprehension.",
+      "Making mistakes is a normal part of learning and should not stop your progress.",
+      "Students usually improve faster when they practice a little every single day.",
+      "Confidence grows when you speak clearly and focus on communication instead of perfection.",
+      "A good teacher helps students feel comfortable, motivated, and ready to speak.",
+      "Building a strong routine is one of the most effective ways to learn English."
     ];
 
     var grammarQuestions = [];
@@ -1180,12 +1178,52 @@
     var studentName = "";
     var studentEmail = "";
     var testDate = "";
+    var availableVoices = [];
+
+    function loadVoices() {
+      if ("speechSynthesis" in window) {
+        availableVoices = window.speechSynthesis.getVoices();
+      }
+    }
+
+    if ("speechSynthesis" in window) {
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function getBestFemaleVoice() {
+      if (!availableVoices || !availableVoices.length) return null;
+
+      var englishVoices = availableVoices.filter(function(v) {
+        return v.lang && v.lang.toLowerCase().indexOf("en") === 0;
+      });
+
+      var preferred = englishVoices.find(function(v) {
+        var name = v.name.toLowerCase();
+        return name.includes("female") ||
+               name.includes("samantha") ||
+               name.includes("victoria") ||
+               name.includes("karen") ||
+               name.includes("zira") ||
+               name.includes("ava") ||
+               name.includes("aria") ||
+               name.includes("serena") ||
+               name.includes("allison") ||
+               name.includes("moira");
+      });
+
+      return preferred || englishVoices[0] || availableVoices[0];
+    }
 
     function getRandomGrammarQuestions() {
       var basicQuestions = shuffleArray(questionBank.basic).slice(0, 5);
       var intermediateQuestions = shuffleArray(questionBank.intermediate).slice(0, 5);
       var advancedQuestions = shuffleArray(questionBank.advanced).slice(0, 5);
       return shuffleArray(basicQuestions.concat(intermediateQuestions, advancedQuestions));
+    }
+
+    function getRandomListeningQuestions() {
+      return getRandomItems(listeningBank, 3);
     }
 
     function getRandomSpeakingSentence() {
@@ -1217,7 +1255,7 @@
       }
 
       grammarQuestions = getRandomGrammarQuestions();
-      listeningQuestions = listeningBank.slice();
+      listeningQuestions = getRandomListeningQuestions();
 
       grammarCurrent = 0;
       grammarScore = 0;
@@ -1382,8 +1420,13 @@
 
         var utterance = new SpeechSynthesisUtterance(q.audioText);
         utterance.lang = "en-US";
-        utterance.rate = 0.9;
-        utterance.pitch = 1;
+        utterance.rate = 0.92;
+        utterance.pitch = 1.05;
+
+        var femaleVoice = getBestFemaleVoice();
+        if (femaleVoice) {
+          utterance.voice = femaleVoice;
+        }
 
         window.speechSynthesis.speak(utterance);
 
@@ -1453,7 +1496,15 @@
         }
 
         mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        mediaRecorder = new MediaRecorder(mediaStream);
+
+        var options = {};
+        if (window.MediaRecorder && MediaRecorder.isTypeSupported("audio/mp4")) {
+          options.mimeType = "audio/mp4";
+        } else if (window.MediaRecorder && MediaRecorder.isTypeSupported("audio/webm")) {
+          options.mimeType = "audio/webm";
+        }
+
+        mediaRecorder = new MediaRecorder(mediaStream, options);
         recordedChunks = [];
 
         mediaRecorder.ondataavailable = function(event) {
@@ -1463,7 +1514,8 @@
         };
 
         mediaRecorder.onstop = function() {
-          recordedBlob = new Blob(recordedChunks, { type: "audio/webm" });
+          var mimeType = mediaRecorder.mimeType || "audio/mp4";
+          recordedBlob = new Blob(recordedChunks, { type: mimeType });
 
           if (recordedAudioURL) {
             URL.revokeObjectURL(recordedAudioURL);
@@ -1517,7 +1569,7 @@
 
       try {
         var formData = new FormData();
-        formData.append("audio", recordedBlob, "speaking.webm");
+        formData.append("audio", recordedBlob, "speaking-audio");
         formData.append("expectedText", speakingSentence);
         formData.append("studentName", studentName);
         formData.append("studentEmail", studentEmail);
@@ -1553,9 +1605,9 @@
       } catch (error) {
         console.error(error);
         document.getElementById("speaking-transcript").innerText = "Erro ao obter transcrição.";
-        document.getElementById("speaking-feedback").innerText = "Ainda falta conectar o backend/API da correção automática.";
+        document.getElementById("speaking-feedback").innerText = "Ainda falta conectar ou ajustar o backend/API da correção automática.";
         updateSpeakingStatus("Erro na correção", "");
-        alert("A interface está pronta, mas o backend da correção automática ainda precisa ser conectado.");
+        alert("A interface está pronta, mas o backend da correção automática ainda precisa ser conectado ou ajustado.");
       } finally {
         document.getElementById("submit-speaking-btn").disabled = false;
       }
