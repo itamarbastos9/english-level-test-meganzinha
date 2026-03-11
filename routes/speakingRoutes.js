@@ -25,8 +25,12 @@ router.post("/speaking-assessment", upload.single("audio"), (req, res) => {
     }
 
     const expectedText = req.body.expectedText || "";
+    const studentName = req.body.studentName || "";
+    const studentEmail = req.body.studentEmail || "";
 
     console.log("Expected text:", expectedText);
+    console.log("Student name:", studentName);
+    console.log("Student email:", studentEmail);
     console.log("Uploaded file:", req.file.filename);
 
     const transcript = expectedText || "Demo transcript";
