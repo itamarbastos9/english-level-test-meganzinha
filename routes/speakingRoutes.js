@@ -13,6 +13,15 @@ if (!fs.existsSync(uploadPath)) {
 
 const upload = multer({ dest: uploadPath });
 
+// rota simples para testar se o backend online está funcionando
+router.get("/test-speaking", (req, res) => {
+  res.json({
+    ok: true,
+    message: "Speaking route is working"
+  });
+});
+
+// rota principal do speaking
 router.post("/speaking-assessment", upload.single("audio"), (req, res) => {
   try {
     console.log("Speaking route hit");
@@ -31,7 +40,7 @@ router.post("/speaking-assessment", upload.single("audio"), (req, res) => {
     console.log("Expected text:", expectedText);
     console.log("Student name:", studentName);
     console.log("Student email:", studentEmail);
-    console.log("Uploaded file:", req.file.filename);
+    console.log("Uploaded file path:", req.file.path);
 
     const transcript = expectedText || "Demo transcript";
     const accuracy = 85;
@@ -41,7 +50,7 @@ router.post("/speaking-assessment", upload.single("audio"), (req, res) => {
 
     fs.unlink(req.file.path, (err) => {
       if (err) {
-        console.error("Error deleting file:", err);
+        console.error("Error deleting uploaded file:", err);
       }
     });
 
