@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>English Level Test</title>
+  <title>English Placement Test</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -22,10 +20,7 @@
         linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
     }
 
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
+    .page { max-width: 1120px; margin: 0 auto; }
 
     .hero {
       text-align: center;
@@ -110,9 +105,7 @@
       font-weight: 700;
     }
 
-    .panel-body {
-      padding: 28px;
-    }
+    .panel-body { padding: 28px; }
 
     .section-title {
       margin: 0 0 8px;
@@ -133,9 +126,7 @@
       margin-bottom: 8px;
     }
 
-    .input-wrap {
-      text-align: left;
-    }
+    .input-wrap { text-align: left; }
 
     .input-label {
       display: block;
@@ -145,8 +136,7 @@
       color: #334155;
     }
 
-    input,
-    textarea {
+    input, textarea {
       width: 100%;
       padding: 16px;
       border-radius: 16px;
@@ -161,19 +151,16 @@
     }
 
     textarea {
-      min-height: 120px;
+      min-height: 110px;
       resize: vertical;
     }
 
-    input:focus,
-    textarea:focus {
+    input:focus, textarea:focus {
       border-color: #58cc02;
       box-shadow: 0 0 0 4px rgba(88, 204, 2, 0.12);
     }
 
-    .primary-btn,
-    .secondary-btn,
-    .ghost-btn {
+    .primary-btn, .secondary-btn, .ghost-btn, .danger-btn {
       border: none;
       border-radius: 16px;
       padding: 16px 24px;
@@ -189,19 +176,6 @@
       box-shadow: 0 14px 28px rgba(88, 204, 2, 0.22);
     }
 
-    .primary-btn:hover,
-    .secondary-btn:hover,
-    .ghost-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .primary-btn:disabled {
-      background: #cbd5e1;
-      box-shadow: none;
-      cursor: not-allowed;
-      transform: none;
-    }
-
     .secondary-btn {
       background: #111827;
       color: white;
@@ -213,14 +187,30 @@
       border: 1px solid #bfdbfe;
     }
 
+    .danger-btn {
+      background: #ef4444;
+      color: white;
+    }
+
+    .primary-btn:hover, .secondary-btn:hover, .ghost-btn:hover, .danger-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary-btn:disabled, .secondary-btn:disabled, .ghost-btn:disabled, .danger-btn:disabled {
+      background: #cbd5e1;
+      color: #64748b;
+      border-color: #cbd5e1;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .feature-stack {
       display: grid;
       gap: 18px;
     }
 
-    .feature-card,
-    .mini-card,
-    .section-box {
+    .feature-card, .mini-card {
       background: rgba(255, 255, 255, 0.94);
       border: 1px solid #e6edf6;
       border-radius: 24px;
@@ -228,9 +218,7 @@
       box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
     }
 
-    .feature-card h3,
-    .mini-card h3,
-    .section-box h3 {
+    .feature-card h3, .mini-card h3 {
       margin: 0 0 14px;
       font-size: 26px;
       color: #0f172a;
@@ -266,8 +254,7 @@
       margin-bottom: 4px;
     }
 
-    .feature-text span,
-    .mini-row span {
+    .feature-text span, .mini-row span {
       color: #64748b;
       font-size: 14px;
       line-height: 1.5;
@@ -295,10 +282,7 @@
       color: #0f172a;
     }
 
-    #grammar-screen,
-    #listening-screen,
-    #reading-screen,
-    #final-screen {
+    #grammar-screen, #listening-screen, #speaking-screen, #final-screen {
       display: none;
     }
 
@@ -328,9 +312,7 @@
       border: 1px solid #d7e7ff;
     }
 
-    .progress-area {
-      margin-bottom: 24px;
-    }
+    .progress-area { margin-bottom: 24px; }
 
     .progress-top {
       display: flex;
@@ -356,17 +338,14 @@
       transition: width 0.25s ease;
     }
 
-    #grammar-question,
-    #listening-question,
-    .reading-title {
+    #grammar-question, #listening-question {
       margin: 0 0 24px;
       font-size: 34px;
       line-height: 1.25;
       color: #0f172a;
     }
 
-    #grammar-options,
-    #listening-options {
+    #grammar-options, #listening-options {
       display: grid;
       gap: 14px;
     }
@@ -430,8 +409,7 @@
       line-height: 1.45;
     }
 
-    .quiz-actions,
-    .result-actions {
+    .quiz-actions, .result-actions, .speaking-actions {
       display: flex;
       justify-content: flex-end;
       gap: 12px;
@@ -439,8 +417,7 @@
       margin-top: 24px;
     }
 
-    .audio-box,
-    .reading-box {
+    .audio-box, .speaking-box {
       background: #f8fbff;
       border: 1px solid #dbeafe;
       border-radius: 20px;
@@ -448,56 +425,97 @@
       margin-bottom: 20px;
     }
 
-    .audio-help,
-    .reading-help {
+    .audio-help, .speaking-help {
       color: #64748b;
       font-size: 15px;
       line-height: 1.6;
       margin: 0 0 14px;
     }
 
-    .timer-badge {
+    .speaking-sentence {
+      background: #ffffff;
+      border: 1px solid #dbe3ee;
+      border-radius: 18px;
+      padding: 20px;
+      font-size: 20px;
+      line-height: 1.7;
+      color: #0f172a;
+      font-weight: 700;
+      margin: 14px 0 18px;
+    }
+
+    .status-chip {
       display: inline-block;
-      padding: 8px 12px;
+      padding: 9px 14px;
       border-radius: 999px;
-      background: #fff7ed;
-      color: #c2410c;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
       font-size: 13px;
       font-weight: 800;
-      border: 1px solid #fed7aa;
       margin-bottom: 16px;
     }
 
-    .passage-text {
+    .status-chip.recording {
+      background: #fef2f2;
+      color: #b91c1c;
+      border-color: #fecaca;
+    }
+
+    .status-chip.success {
+      background: #f0fdf4;
+      color: #166534;
+      border-color: #bbf7d0;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 18px;
-      font-size: 17px;
-      line-height: 1.7;
-      color: #1e293b;
-      margin-bottom: 18px;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
     }
 
-    .hidden-passage {
-      background: #f8fafc;
-      border: 1px dashed #cbd5e1;
-      border-radius: 16px;
-      padding: 18px;
-      color: #64748b;
-      font-style: italic;
-      margin-bottom: 18px;
-    }
-
-    .question-group {
-      margin-bottom: 18px;
-    }
-
-    .question-group label {
+    .metric-card strong {
       display: block;
-      font-weight: 800;
+      font-size: 14px;
+      color: #475569;
       margin-bottom: 8px;
+    }
+
+    .metric-card span {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .transcript-box {
+      margin-top: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .transcript-box h4 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #0f172a;
+    }
+
+    .transcript-box p {
+      margin: 0;
       color: #334155;
+      line-height: 1.6;
+      font-size: 15px;
+      word-break: break-word;
     }
 
     .result-banner {
@@ -608,6 +626,8 @@
       border-radius: 14px;
       font-size: 15px;
       font-weight: 800;
+      line-height: 1.5;
+      word-break: break-word;
     }
 
     .correct {
@@ -701,6 +721,8 @@
       padding: 10px 12px;
       border-radius: 10px;
       font-weight: 700;
+      line-height: 1.5;
+      word-break: break-word;
     }
 
     .pdf-correct {
@@ -722,48 +744,24 @@
     }
 
     @media (max-width: 920px) {
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .score-grid {
+      .main-grid, .metric-grid, .score-grid {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 720px) {
-      body {
-        padding: 14px;
-      }
+      body { padding: 14px; }
 
-      .hero h1 {
-        font-size: 34px;
-      }
+      .hero h1 { font-size: 34px; }
+      .hero p { font-size: 16px; }
+      .panel-body { padding: 20px; }
 
-      .hero p {
-        font-size: 16px;
-      }
-
-      .panel-body {
-        padding: 20px;
-      }
-
-      .glass-card,
-      .feature-card,
-      .mini-card,
-      .section-box {
+      .glass-card, .feature-card, .mini-card {
         border-radius: 22px;
       }
 
-      .section-title {
-        font-size: 26px;
-      }
-
-      #grammar-question,
-      #listening-question,
-      .reading-title {
-        font-size: 28px;
-      }
+      .section-title { font-size: 26px; }
+      #grammar-question, #listening-question { font-size: 28px; }
 
       .option-inner {
         padding: 16px;
@@ -777,18 +775,13 @@
         font-size: 14px;
       }
 
-      .option-text {
-        font-size: 16px;
-      }
+      .option-text { font-size: 16px; }
 
-      .quiz-actions,
-      .result-actions {
+      .quiz-actions, .result-actions, .speaking-actions {
         justify-content: stretch;
       }
 
-      .primary-btn,
-      .secondary-btn,
-      .ghost-btn {
+      .primary-btn, .secondary-btn, .ghost-btn, .danger-btn {
         width: 100%;
       }
     }
@@ -799,18 +792,9 @@
         padding: 0;
       }
 
-      .page,
-      .hero,
-      .main-grid,
-      .feature-stack,
-      .glass-card,
-      .result-actions,
-      .quiz-actions,
-      #start-screen,
-      #grammar-screen,
-      #listening-screen,
-      #reading-screen,
-      #final-screen {
+      .page, .hero, .main-grid, .feature-stack, .glass-card,
+      .result-actions, .quiz-actions, .speaking-actions,
+      #start-screen, #grammar-screen, #listening-screen, #speaking-screen, #final-screen {
         display: none !important;
       }
 
@@ -828,16 +812,16 @@
       <div class="top-nav">
         <span>English Placement Test</span>
         <span>•</span>
-        <span>Grammar + Listening + Reading</span>
+        <span>Grammar + Listening + Speaking</span>
         <span>•</span>
         <span>Detailed Review</span>
         <span>•</span>
         <span>PDF Report Ready</span>
       </div>
 
-      <div class="hero-badge">Professional English Assessment</div>
+      <div class="hero-badge">Avaliação profissional de inglês</div>
       <h1>English Level Test</h1>
-      <p>Evaluate grammar, listening, and reading comprehension in one complete test and generate a full report for class planning.</p>
+      <p>Avalie gramática, listening e speaking em um teste completo e gere um relatório profissional para planejar as aulas.</p>
     </div>
 
     <div class="main-grid">
@@ -849,22 +833,22 @@
 
         <div class="panel-body">
           <div id="start-screen">
-            <h2 class="section-title">Begin your test</h2>
-            <p class="section-subtitle">This test has 3 parts: grammar, listening, and reading/vocabulary. At the end, the student receives a complete report with section scores and a final level estimate.</p>
+            <h2 class="section-title">Comece seu teste</h2>
+            <p class="section-subtitle">Este teste possui 3 etapas: gramática, listening e speaking. No final, o aluno recebe um relatório com pontuação por seção e nível estimado.</p>
 
             <div class="form-grid">
               <div class="input-wrap">
-                <label class="input-label">Student name</label>
-                <input id="student-name" placeholder="Enter your full name">
+                <label class="input-label">Nome do aluno</label>
+                <input id="student-name" placeholder="Digite o nome completo">
               </div>
 
               <div class="input-wrap">
-                <label class="input-label">Student email</label>
-                <input id="student-email" placeholder="Enter your best email">
+                <label class="input-label">E-mail do aluno</label>
+                <input id="student-email" placeholder="Digite o melhor e-mail">
               </div>
             </div>
 
-            <button class="primary-btn" onclick="startTest()">Start Test</button>
+            <button class="primary-btn" onclick="startTest()">Iniciar Teste</button>
           </div>
 
           <div id="grammar-screen">
@@ -887,7 +871,7 @@
             <div id="grammar-options"></div>
 
             <div class="quiz-actions">
-              <button id="grammar-next-btn" class="primary-btn" onclick="nextGrammarQuestion()" disabled>Next Question</button>
+              <button id="grammar-next-btn" class="primary-btn" onclick="nextGrammarQuestion()" disabled>Próxima questão</button>
             </div>
           </div>
 
@@ -898,50 +882,75 @@
             </div>
 
             <div class="audio-box">
-              <p class="audio-help">Click the button below to listen to the audio. You can play it up to 2 times.</p>
-              <button id="play-audio-btn" class="ghost-btn" onclick="playCurrentAudio()">▶ Play Audio</button>
-              <p id="audio-plays-left" class="audio-help" style="margin-top: 12px;">Plays left: 2</p>
+              <p class="audio-help">Clique no botão abaixo para ouvir o áudio. Você pode reproduzir cada áudio até 2 vezes.</p>
+              <button id="play-audio-btn" class="ghost-btn" onclick="playCurrentAudio()">▶ Ouvir áudio</button>
+              <p id="audio-plays-left" class="audio-help" style="margin-top: 12px;">Reproduções restantes: 2</p>
             </div>
 
             <h2 id="listening-question"></h2>
             <div id="listening-options"></div>
 
             <div class="quiz-actions">
-              <button id="listening-next-btn" class="primary-btn" onclick="nextListeningQuestion()" disabled>Next Question</button>
+              <button id="listening-next-btn" class="primary-btn" onclick="nextListeningQuestion()" disabled>Próxima questão</button>
             </div>
           </div>
 
-          <div id="reading-screen">
-            <h2 class="reading-title">Reading and Vocabulary</h2>
+          <div id="speaking-screen">
+            <h2 class="section-title">Speaking Assessment</h2>
+            <p class="section-subtitle">Leia a frase abaixo e grave sua voz. O sistema foi preparado para enviar o áudio para correção automática de pronúncia no backend.</p>
 
-            <div class="reading-box">
-              <div class="timer-badge" id="reading-timer">Time left to read: 15s</div>
-              <p class="reading-help">Read the text carefully. After 15 seconds, the text will disappear and the student must answer the questions in English.</p>
+            <div class="speaking-box">
+              <div id="speaking-status" class="status-chip">Aguardando gravação</div>
 
-              <div id="reading-passage" class="passage-text"></div>
-              <div id="reading-hidden-message" class="hidden-passage" style="display: none;">
-                The text is now hidden. Please answer the questions from memory.
+              <div class="input-label">Frase para repetir</div>
+              <div id="speaking-sentence" class="speaking-sentence"></div>
+
+              <p class="speaking-help">
+                Leia exatamente a frase acima. Depois clique em <strong>Começar gravação</strong>, fale a frase e clique em <strong>Parar gravação</strong>.
+              </p>
+
+              <div class="speaking-actions">
+                <button id="start-recording-btn" class="primary-btn" onclick="startRecording()">Começar gravação</button>
+                <button id="stop-recording-btn" class="danger-btn" onclick="stopRecording()" disabled>Parar gravação</button>
+                <button id="submit-speaking-btn" class="ghost-btn" onclick="submitSpeakingAssessment()" disabled>Enviar para correção</button>
+              </div>
+
+              <audio id="recorded-audio" controls style="width:100%; margin-top:18px; display:none;"></audio>
+
+              <div class="metric-grid">
+                <div class="metric-card">
+                  <strong>Accuracy</strong>
+                  <span id="accuracy-score">--</span>
+                </div>
+                <div class="metric-card">
+                  <strong>Fluency</strong>
+                  <span id="fluency-score">--</span>
+                </div>
+                <div class="metric-card">
+                  <strong>Completeness</strong>
+                  <span id="completeness-score">--</span>
+                </div>
+              </div>
+
+              <div class="transcript-box">
+                <h4>Transcrição reconhecida</h4>
+                <p id="speaking-transcript">Nenhuma transcrição ainda.</p>
+              </div>
+
+              <div class="transcript-box">
+                <h4>Feedback automático</h4>
+                <p id="speaking-feedback">Nenhum feedback ainda.</p>
               </div>
             </div>
 
-            <div class="question-group">
-              <label id="reading-q1-label"></label>
-              <textarea id="reading-answer-1" placeholder="Type your answer here"></textarea>
-            </div>
-
-            <div class="question-group">
-              <label id="reading-q2-label"></label>
-              <textarea id="reading-answer-2" placeholder="Type your answer here"></textarea>
-            </div>
-
             <div class="quiz-actions">
-              <button class="primary-btn" onclick="finishReadingSection()">Finish Test</button>
+              <button id="finish-speaking-btn" class="primary-btn" onclick="finishSpeakingSection()" disabled>Ver resultado final</button>
             </div>
           </div>
 
           <div id="final-screen">
             <div class="result-banner">
-              <h2>Test completed</h2>
+              <h2>Teste concluído</h2>
               <div id="final-score" class="result-score"></div>
               <div id="final-level" class="level-badge"></div>
 
@@ -955,26 +964,26 @@
                   <span id="listening-final-score">0/3</span>
                 </div>
                 <div class="score-box">
-                  <strong>Reading</strong>
-                  <span id="reading-final-score">0/2</span>
+                  <strong>Speaking</strong>
+                  <span id="speaking-final-score">0/100</span>
                 </div>
               </div>
 
               <div class="report-summary">
-                <div><strong>Student:</strong> <span id="summary-name"></span></div>
+                <div><strong>Aluno:</strong> <span id="summary-name"></span></div>
                 <div><strong>Email:</strong> <span id="summary-email"></span></div>
-                <div><strong>Date:</strong> <span id="summary-date"></span></div>
+                <div><strong>Data:</strong> <span id="summary-date"></span></div>
               </div>
             </div>
 
-            <h3 class="review-title">Detailed Review</h3>
-            <p class="review-subtitle">Review every answer from grammar, listening, and reading. Then save the full report as PDF.</p>
+            <h3 class="review-title">Revisão detalhada</h3>
+            <p class="review-subtitle">Revise grammar, listening e speaking. Depois salve o relatório completo em PDF.</p>
 
             <div id="review-list"></div>
 
             <div class="result-actions">
-              <button class="ghost-btn" onclick="downloadPDF()">Download Full PDF Report</button>
-              <button class="secondary-btn" onclick="location.reload()">Restart Test</button>
+              <button class="ghost-btn" onclick="downloadPDF()">Baixar PDF completo</button>
+              <button class="secondary-btn" onclick="location.reload()">Reiniciar teste</button>
             </div>
           </div>
         </div>
@@ -982,14 +991,14 @@
 
       <div class="feature-stack">
         <div class="feature-card">
-          <h3>What this test measures</h3>
+          <h3>O que esse teste mede</h3>
 
           <div class="feature-list">
             <div class="feature-item">
               <div class="feature-icon">✍️</div>
               <div class="feature-text">
                 <strong>Grammar</strong>
-                <span>15 balanced questions from basic, intermediate, and advanced levels.</span>
+                <span>15 perguntas balanceadas entre níveis básico, intermediário e avançado.</span>
               </div>
             </div>
 
@@ -997,44 +1006,44 @@
               <div class="feature-icon">🎧</div>
               <div class="feature-text">
                 <strong>Listening</strong>
-                <span>Short audio prompts with comprehension questions to measure real listening ability.</span>
+                <span>Áudios curtos com perguntas de compreensão para medir entendimento real.</span>
               </div>
             </div>
 
             <div class="feature-item">
-              <div class="feature-icon">📘</div>
+              <div class="feature-icon">🎤</div>
               <div class="feature-text">
-                <strong>Reading / Vocabulary</strong>
-                <span>The student reads a short text, then answers two open questions from memory.</span>
+                <strong>Speaking</strong>
+                <span>O aluno grava a própria voz e o sistema fica pronto para correção automática de pronúncia.</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="mini-card">
-          <h3>Why this is useful</h3>
+          <h3>Por que isso é forte</h3>
 
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Better diagnosis</strong>
-              <span>You can understand the student beyond grammar only.</span>
+              <strong>Diagnóstico mais real</strong>
+              <span>Você não avalia só gramática, mas também compreensão auditiva e fala.</span>
             </div>
           </div>
 
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>More professional process</strong>
-              <span>This feels like a real placement test before classes start.</span>
+              <strong>Mais profissional</strong>
+              <span>O aluno percebe que está entrando em um sistema sério de nivelamento.</span>
             </div>
           </div>
 
           <div class="mini-row">
             <div class="mini-dot"></div>
             <div>
-              <strong>Stronger lesson planning</strong>
-              <span>The final report shows exactly what the teacher should focus on first.</span>
+              <strong>Melhor primeira aula</strong>
+              <span>A professora já começa sabendo os pontos fortes e fracos do aluno.</span>
             </div>
           </div>
         </div>
@@ -1075,11 +1084,9 @@
         {question:"She has lived here _ 2019.",options:["for","since","from","at"],answer:"since"},
         {question:"He is _ than his brother.",options:["tall","taller","more tall","most tall"],answer:"taller"}
       ],
-
       intermediate: [
         {question:"They were tired, _ they kept working.",options:["but","so","because","or"],answer:"but"},
         {question:"If I _ more time, I would study more.",options:["have","had","will have","am having"],answer:"had"},
-        {question:"She _ English for five years.",options:["studies","studied","has studied","study"],answer:"has studied"},
         {question:"He _ working here since 2020.",options:["is","has been","was","be"],answer:"has been"},
         {question:"By next year I _ graduated.",options:["will","will have","am","have"],answer:"will have"},
         {question:"I wish I _ speak Japanese.",options:["can","could","will","may"],answer:"could"},
@@ -1094,7 +1101,6 @@
         {question:"He is capable _ solving it.",options:["of","in","for","to"],answer:"of"},
         {question:"This depends _ the weather.",options:["of","on","to","with"],answer:"on"}
       ],
-
       advanced: [
         {question:"Had I known, I _ earlier.",options:["come","came","would come","would have come"],answer:"would have come"},
         {question:"He denied _ the money.",options:["steal","stealing","stole","to steal"],answer:"stealing"},
@@ -1110,8 +1116,7 @@
         {question:"He answered _.",options:["correct","correctly","more correct","correctest"],answer:"correctly"},
         {question:"The exam was _ easy.",options:["surprising","surprisingly","surprise","surprised"],answer:"surprisingly"},
         {question:"She reacted _.",options:["calm","calmly","calmer","calmest"],answer:"calmly"},
-        {question:"He spoke _ during the meeting.",options:["confident","confidently","confidence","confidentest"],answer:"confidently"},
-        {question:"Scarcely _ when the phone rang.",options:["had I sat down","I had sat down","did I sit down","I sat down"],answer:"had I sat down"}
+        {question:"He spoke _ during the meeting.",options:["confident","confidently","confidence","confidentest"],answer:"confidently"}
       ]
     };
 
@@ -1136,13 +1141,11 @@
       }
     ];
 
-    var readingTask = {
-      passage: "Last Saturday, Maria woke up early because she had an important English class online. Before the lesson started, she reviewed her notes, made a cup of coffee, and checked her internet connection. After class, she wrote down five new words and practiced them with short sentences.",
-      q1: "Why did Maria wake up early?",
-      q2: "What did she do after class?",
-      answers1: ["because she had an important english class online", "she had an important english class online", "for an important english class online"],
-      answers2: ["she wrote down five new words and practiced them with short sentences", "she wrote down five new words and practiced them", "she practiced five new words", "she wrote down five new words"]
-    };
+    var speakingPrompts = [
+      "Learning a new language takes patience, practice, and confidence.",
+      "The more you speak English every day, the more natural it becomes.",
+      "Consistent practice helps students improve fluency, pronunciation, and vocabulary."
+    ];
 
     var grammarQuestions = [];
     var grammarCurrent = 0;
@@ -1157,10 +1160,22 @@
     var listeningReview = [];
     var playsLeft = 2;
 
-    var readingScore = 0;
-    var readingReview = [];
-    var readingTimerInterval = null;
-    var readingTimeLeft = 15;
+    var speakingSentence = "";
+    var speakingResult = {
+      transcript: "",
+      accuracy: 0,
+      fluency: 0,
+      completeness: 0,
+      feedback: "Nenhum feedback ainda.",
+      rawScore: 0
+    };
+    var speakingReview = [];
+
+    var mediaRecorder = null;
+    var mediaStream = null;
+    var recordedChunks = [];
+    var recordedBlob = null;
+    var recordedAudioURL = "";
 
     var studentName = "";
     var studentEmail = "";
@@ -1173,35 +1188,23 @@
       return shuffleArray(basicQuestions.concat(intermediateQuestions, advancedQuestions));
     }
 
-    function normalizeText(text) {
-      return text
-        .toLowerCase()
-        .replace(/[.,!?;:]/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
-    }
-
-    function answerMatches(userAnswer, acceptedAnswers) {
-      var normalized = normalizeText(userAnswer);
-
-      if (!normalized) return false;
-
-      for (var i = 0; i < acceptedAnswers.length; i++) {
-        var accepted = normalizeText(acceptedAnswers[i]);
-        if (normalized === accepted || normalized.indexOf(accepted) !== -1 || accepted.indexOf(normalized) !== -1) {
-          return true;
-        }
-      }
-
-      return false;
+    function getRandomSpeakingSentence() {
+      return shuffleArray(speakingPrompts)[0];
     }
 
     function calculateLevel(totalScore) {
-      if (totalScore <= 6) return "A1 Beginner";
-      if (totalScore <= 10) return "A2 Elementary";
-      if (totalScore <= 14) return "B1 Intermediate";
-      if (totalScore <= 18) return "B2 Upper Intermediate";
+      if (totalScore <= 90) return "A1 Beginner";
+      if (totalScore <= 130) return "A2 Elementary";
+      if (totalScore <= 170) return "B1 Intermediate";
+      if (totalScore <= 205) return "B2 Upper Intermediate";
       return "C1 Advanced";
+    }
+
+    function updateSpeakingStatus(text, className) {
+      var status = document.getElementById("speaking-status");
+      status.className = "status-chip";
+      if (className) status.classList.add(className);
+      status.innerText = text;
     }
 
     function startTest() {
@@ -1209,7 +1212,7 @@
       studentEmail = document.getElementById("student-email").value.trim();
 
       if (!studentName || !studentEmail) {
-        alert("Enter name and email");
+        alert("Preencha nome e e-mail.");
         return;
       }
 
@@ -1227,16 +1230,27 @@
       listeningReview = [];
       playsLeft = 2;
 
-      readingScore = 0;
-      readingReview = [];
-      readingTimeLeft = 15;
+      speakingSentence = getRandomSpeakingSentence();
+      speakingResult = {
+        transcript: "",
+        accuracy: 0,
+        fluency: 0,
+        completeness: 0,
+        feedback: "Nenhum feedback ainda.",
+        rawScore: 0
+      };
+      speakingReview = [];
 
-      testDate = new Date().toLocaleString();
+      recordedChunks = [];
+      recordedBlob = null;
+      recordedAudioURL = "";
+
+      testDate = new Date().toLocaleString("pt-BR");
 
       document.getElementById("start-screen").style.display = "none";
       document.getElementById("grammar-screen").style.display = "block";
       document.getElementById("listening-screen").style.display = "none";
-      document.getElementById("reading-screen").style.display = "none";
+      document.getElementById("speaking-screen").style.display = "none";
       document.getElementById("final-screen").style.display = "none";
 
       showGrammarQuestion();
@@ -1262,7 +1276,6 @@
         var btn = document.createElement("button");
         btn.className = "option";
         btn.type = "button";
-
         var letter = String.fromCharCode(65 + index);
 
         btn.innerHTML =
@@ -1275,7 +1288,6 @@
           document.querySelectorAll("#grammar-options .option").forEach(function(o) {
             o.classList.remove("selected");
           });
-
           btn.classList.add("selected");
           grammarSelectedAnswer = option;
           document.getElementById("grammar-next-btn").disabled = false;
@@ -1287,16 +1299,14 @@
 
     function nextGrammarQuestion() {
       if (!grammarSelectedAnswer) {
-        alert("Select an answer");
+        alert("Selecione uma resposta.");
         return;
       }
 
       var q = grammarQuestions[grammarCurrent];
       var correct = grammarSelectedAnswer === q.answer;
 
-      if (correct) {
-        grammarScore++;
-      }
+      if (correct) grammarScore++;
 
       grammarReview.push({
         section: "Grammar",
@@ -1325,10 +1335,9 @@
     function showListeningQuestion() {
       listeningSelectedAnswer = "";
       playsLeft = 2;
-
       document.getElementById("listening-next-btn").disabled = true;
       document.getElementById("play-audio-btn").disabled = false;
-      document.getElementById("audio-plays-left").innerText = "Plays left: " + playsLeft;
+      document.getElementById("audio-plays-left").innerText = "Reproduções restantes: " + playsLeft;
 
       var q = listeningQuestions[listeningCurrent];
       document.getElementById("listening-counter").innerText = "Listening Question " + (listeningCurrent + 1) + " of " + listeningQuestions.length;
@@ -1342,7 +1351,6 @@
         var btn = document.createElement("button");
         btn.className = "option";
         btn.type = "button";
-
         var letter = String.fromCharCode(65 + index);
 
         btn.innerHTML =
@@ -1355,7 +1363,6 @@
           document.querySelectorAll("#listening-options .option").forEach(function(o) {
             o.classList.remove("selected");
           });
-
           btn.classList.add("selected");
           listeningSelectedAnswer = option;
           document.getElementById("listening-next-btn").disabled = false;
@@ -1381,28 +1388,26 @@
         window.speechSynthesis.speak(utterance);
 
         playsLeft--;
-        document.getElementById("audio-plays-left").innerText = "Plays left: " + playsLeft;
+        document.getElementById("audio-plays-left").innerText = "Reproduções restantes: " + playsLeft;
 
         if (playsLeft <= 0) {
           document.getElementById("play-audio-btn").disabled = true;
         }
       } else {
-        alert("Audio is not supported in this browser.");
+        alert("Seu navegador não suporta esse áudio automático.");
       }
     }
 
     function nextListeningQuestion() {
       if (!listeningSelectedAnswer) {
-        alert("Select an answer");
+        alert("Selecione uma resposta.");
         return;
       }
 
       var q = listeningQuestions[listeningCurrent];
       var correct = listeningSelectedAnswer === q.answer;
 
-      if (correct) {
-        listeningScore++;
-      }
+      if (correct) listeningScore++;
 
       listeningReview.push({
         section: "Listening",
@@ -1419,78 +1424,157 @@
       if (listeningCurrent < listeningQuestions.length) {
         showListeningQuestion();
       } else {
-        startReadingSection();
+        startSpeakingSection();
       }
     }
 
-    function startReadingSection() {
+    function startSpeakingSection() {
       document.getElementById("listening-screen").style.display = "none";
-      document.getElementById("reading-screen").style.display = "block";
+      document.getElementById("speaking-screen").style.display = "block";
 
-      document.getElementById("reading-passage").innerText = readingTask.passage;
-      document.getElementById("reading-hidden-message").style.display = "none";
-      document.getElementById("reading-passage").style.display = "block";
-
-      document.getElementById("reading-q1-label").innerText = readingTask.q1;
-      document.getElementById("reading-q2-label").innerText = readingTask.q2;
-      document.getElementById("reading-answer-1").value = "";
-      document.getElementById("reading-answer-2").value = "";
-
-      readingTimeLeft = 15;
-      document.getElementById("reading-timer").innerText = "Time left to read: " + readingTimeLeft + "s";
-
-      if (readingTimerInterval) {
-        clearInterval(readingTimerInterval);
-      }
-
-      readingTimerInterval = setInterval(function() {
-        readingTimeLeft--;
-        document.getElementById("reading-timer").innerText = "Time left to read: " + readingTimeLeft + "s";
-
-        if (readingTimeLeft <= 0) {
-          clearInterval(readingTimerInterval);
-          document.getElementById("reading-passage").style.display = "none";
-          document.getElementById("reading-hidden-message").style.display = "block";
-          document.getElementById("reading-timer").innerText = "Reading time finished";
-        }
-      }, 1000);
+      document.getElementById("speaking-sentence").innerText = speakingSentence;
+      document.getElementById("accuracy-score").innerText = "--";
+      document.getElementById("fluency-score").innerText = "--";
+      document.getElementById("completeness-score").innerText = "--";
+      document.getElementById("speaking-transcript").innerText = "Nenhuma transcrição ainda.";
+      document.getElementById("speaking-feedback").innerText = "Nenhum feedback ainda.";
+      document.getElementById("recorded-audio").style.display = "none";
+      document.getElementById("recorded-audio").src = "";
+      document.getElementById("submit-speaking-btn").disabled = true;
+      document.getElementById("finish-speaking-btn").disabled = true;
+      updateSpeakingStatus("Aguardando gravação", "");
     }
 
-    function finishReadingSection() {
-      if (readingTimerInterval) {
-        clearInterval(readingTimerInterval);
+    async function startRecording() {
+      try {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          alert("Seu navegador não suporta gravação de áudio.");
+          return;
+        }
+
+        mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(mediaStream);
+        recordedChunks = [];
+
+        mediaRecorder.ondataavailable = function(event) {
+          if (event.data && event.data.size > 0) {
+            recordedChunks.push(event.data);
+          }
+        };
+
+        mediaRecorder.onstop = function() {
+          recordedBlob = new Blob(recordedChunks, { type: "audio/webm" });
+
+          if (recordedAudioURL) {
+            URL.revokeObjectURL(recordedAudioURL);
+          }
+
+          recordedAudioURL = URL.createObjectURL(recordedBlob);
+
+          var audio = document.getElementById("recorded-audio");
+          audio.src = recordedAudioURL;
+          audio.style.display = "block";
+
+          document.getElementById("submit-speaking-btn").disabled = false;
+          updateSpeakingStatus("Gravação concluída", "success");
+        };
+
+        mediaRecorder.start();
+
+        document.getElementById("start-recording-btn").disabled = true;
+        document.getElementById("stop-recording-btn").disabled = false;
+        document.getElementById("submit-speaking-btn").disabled = true;
+        updateSpeakingStatus("Gravando...", "recording");
+      } catch (error) {
+        alert("Não foi possível acessar o microfone.");
+        console.error(error);
+      }
+    }
+
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
       }
 
-      var answer1 = document.getElementById("reading-answer-1").value.trim();
-      var answer2 = document.getElementById("reading-answer-2").value.trim();
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(function(track) {
+          track.stop();
+        });
+      }
 
-      if (!answer1 || !answer2) {
-        alert("Answer both questions");
+      document.getElementById("start-recording-btn").disabled = false;
+      document.getElementById("stop-recording-btn").disabled = true;
+    }
+
+    async function submitSpeakingAssessment() {
+      if (!recordedBlob) {
+        alert("Grave o áudio antes de enviar.");
         return;
       }
 
-      var correct1 = answerMatches(answer1, readingTask.answers1);
-      var correct2 = answerMatches(answer2, readingTask.answers2);
+      document.getElementById("submit-speaking-btn").disabled = true;
+      updateSpeakingStatus("Enviando para correção...", "");
 
-      if (correct1) readingScore++;
-      if (correct2) readingScore++;
+      try {
+        var formData = new FormData();
+        formData.append("audio", recordedBlob, "speaking.webm");
+        formData.append("expectedText", speakingSentence);
+        formData.append("studentName", studentName);
+        formData.append("studentEmail", studentEmail);
 
-      readingReview = [
+        var response = await fetch("/api/speaking-assessment", {
+          method: "POST",
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error("Falha ao corrigir o speaking.");
+        }
+
+        var data = await response.json();
+
+        speakingResult = {
+          transcript: data.transcript || "",
+          accuracy: data.accuracy ?? 0,
+          fluency: data.fluency ?? 0,
+          completeness: data.completeness ?? 0,
+          feedback: data.feedback || "Sem feedback.",
+          rawScore: Math.round(((data.accuracy ?? 0) + (data.fluency ?? 0) + (data.completeness ?? 0)) / 3)
+        };
+
+        document.getElementById("accuracy-score").innerText = speakingResult.accuracy;
+        document.getElementById("fluency-score").innerText = speakingResult.fluency;
+        document.getElementById("completeness-score").innerText = speakingResult.completeness;
+        document.getElementById("speaking-transcript").innerText = speakingResult.transcript || "Nenhuma transcrição retornada.";
+        document.getElementById("speaking-feedback").innerText = speakingResult.feedback;
+        document.getElementById("finish-speaking-btn").disabled = false;
+
+        updateSpeakingStatus("Correção concluída", "success");
+      } catch (error) {
+        console.error(error);
+        document.getElementById("speaking-transcript").innerText = "Erro ao obter transcrição.";
+        document.getElementById("speaking-feedback").innerText = "Ainda falta conectar o backend/API da correção automática.";
+        updateSpeakingStatus("Erro na correção", "");
+        alert("A interface está pronta, mas o backend da correção automática ainda precisa ser conectado.");
+      } finally {
+        document.getElementById("submit-speaking-btn").disabled = false;
+      }
+    }
+
+    function finishSpeakingSection() {
+      speakingReview = [
         {
-          section: "Reading",
+          section: "Speaking",
           questionNumber: 1,
-          question: readingTask.q1,
-          selected: answer1,
-          correct: readingTask.answers1[0],
-          isCorrect: correct1
-        },
-        {
-          section: "Reading",
-          questionNumber: 2,
-          question: readingTask.q2,
-          selected: answer2,
-          correct: readingTask.answers2[0],
-          isCorrect: correct2
+          question: "Repeat this sentence",
+          selected: speakingResult.transcript || "No transcript returned",
+          correct: speakingSentence,
+          isCorrect: speakingResult.rawScore >= 70,
+          extra:
+            "Accuracy: " + speakingResult.accuracy +
+            " | Fluency: " + speakingResult.fluency +
+            " | Completeness: " + speakingResult.completeness +
+            " | Feedback: " + speakingResult.feedback
         }
       ];
 
@@ -1498,18 +1582,18 @@
     }
 
     function finishTest() {
-      document.getElementById("reading-screen").style.display = "none";
+      document.getElementById("speaking-screen").style.display = "none";
       document.getElementById("final-screen").style.display = "block";
 
-      var totalScore = grammarScore + listeningScore + readingScore;
-      var totalQuestions = grammarQuestions.length + listeningQuestions.length + 2;
+      var speakingDisplayScore = speakingResult.rawScore || 0;
+      var totalScore = grammarScore + listeningScore + speakingDisplayScore;
       var level = calculateLevel(totalScore);
 
-      document.getElementById("final-score").innerText = "Total Score: " + totalScore + " / " + totalQuestions;
-      document.getElementById("final-level").innerText = "Estimated level: " + level;
+      document.getElementById("final-score").innerText = "Pontuação total: " + totalScore;
+      document.getElementById("final-level").innerText = "Nível estimado: " + level;
       document.getElementById("grammar-final-score").innerText = grammarScore + "/" + grammarQuestions.length;
       document.getElementById("listening-final-score").innerText = listeningScore + "/" + listeningQuestions.length;
-      document.getElementById("reading-final-score").innerText = readingScore + "/2";
+      document.getElementById("speaking-final-score").innerText = speakingDisplayScore + "/100";
       document.getElementById("summary-name").innerText = studentName;
       document.getElementById("summary-email").innerText = studentEmail;
       document.getElementById("summary-date").innerText = testDate;
@@ -1517,7 +1601,7 @@
       var review = document.getElementById("review-list");
       review.innerHTML = "";
 
-      var allReview = grammarReview.concat(listeningReview, readingReview);
+      var allReview = grammarReview.concat(listeningReview, speakingReview);
 
       allReview.forEach(function(item) {
         var card = document.createElement("div");
@@ -1528,13 +1612,19 @@
           transcriptHtml = "<div class='review-line correct-answer'>Audio text: " + item.transcript + "</div>";
         }
 
+        var extraHtml = "";
+        if (item.extra) {
+          extraHtml = "<div class='review-line correct-answer'>" + item.extra + "</div>";
+        }
+
         card.innerHTML =
           "<div class='section-label'>" + item.section + "</div>" +
           "<h4>Question " + item.questionNumber + "</h4>" +
           "<p class='review-question'>" + item.question + "</p>" +
           transcriptHtml +
           "<div class='review-line " + (item.isCorrect ? "correct" : "wrong") + "'>Student answer: " + item.selected + "</div>" +
-          "<div class='review-line correct-answer'>Correct answer: " + item.correct + "</div>";
+          "<div class='review-line correct-answer'>Expected / correct answer: " + item.correct + "</div>" +
+          extraHtml;
 
         review.appendChild(card);
       });
@@ -1543,11 +1633,11 @@
     }
 
     function buildPDFReport() {
-      var totalScore = grammarScore + listeningScore + readingScore;
-      var totalQuestions = grammarQuestions.length + listeningQuestions.length + 2;
+      var speakingDisplayScore = speakingResult.rawScore || 0;
+      var totalScore = grammarScore + listeningScore + speakingDisplayScore;
       var level = calculateLevel(totalScore);
       var pdfReport = document.getElementById("pdf-report");
-      var allReview = grammarReview.concat(listeningReview, readingReview);
+      var allReview = grammarReview.concat(listeningReview, speakingReview);
 
       var html = "";
       html += "<div class='pdf-header'>";
@@ -1555,11 +1645,14 @@
       html += "<div class='pdf-meta'>";
       html += "<div><strong>Student:</strong> " + studentName + "</div>";
       html += "<div><strong>Email:</strong> " + studentEmail + "</div>";
-      html += "<div><strong>Total Score:</strong> " + totalScore + " / " + totalQuestions + "</div>";
+      html += "<div><strong>Total Score:</strong> " + totalScore + "</div>";
       html += "<div><strong>Estimated Level:</strong> " + level + "</div>";
       html += "<div><strong>Grammar Score:</strong> " + grammarScore + " / " + grammarQuestions.length + "</div>";
       html += "<div><strong>Listening Score:</strong> " + listeningScore + " / " + listeningQuestions.length + "</div>";
-      html += "<div><strong>Reading Score:</strong> " + readingScore + " / 2</div>";
+      html += "<div><strong>Speaking Score:</strong> " + speakingDisplayScore + " / 100</div>";
+      html += "<div><strong>Speaking Accuracy:</strong> " + speakingResult.accuracy + "</div>";
+      html += "<div><strong>Speaking Fluency:</strong> " + speakingResult.fluency + "</div>";
+      html += "<div><strong>Speaking Completeness:</strong> " + speakingResult.completeness + "</div>";
       html += "<div><strong>Date:</strong> " + testDate + "</div>";
       html += "</div>";
       html += "</div>";
@@ -1575,8 +1668,13 @@
           html += "<div class='pdf-line pdf-answer'>Audio text: " + item.transcript + "</div>";
         }
 
-        html += "<div class='pdf-line " + (item.isCorrect ? "pdf-correct" : "pdf-wrong") + "'>Student answer: " + item.selected + " — " + (item.isCorrect ? "Correct" : "Wrong") + "</div>";
-        html += "<div class='pdf-line pdf-answer'>Correct answer: " + item.correct + "</div>";
+        html += "<div class='pdf-line " + (item.isCorrect ? "pdf-correct" : "pdf-wrong") + "'>Student answer: " + item.selected + "</div>";
+        html += "<div class='pdf-line pdf-answer'>Expected / correct answer: " + item.correct + "</div>";
+
+        if (item.extra) {
+          html += "<div class='pdf-line pdf-answer'>" + item.extra + "</div>";
+        }
+
         html += "</div>";
       });
 
